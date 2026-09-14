@@ -1,0 +1,152 @@
+@use '../abstracts/mixins' as m;
+
+// CARROUSEL
+//
+// Principe : le defilement est natif (overflow-x + scroll-snap). Sans
+// JavaScript, on fait glisser au doigt ou au trackpad et les temoignages
+// s'accrochent correctement. Le JS (public/js/modules/carousel.js) n'ajoute que
+// les fleches et les pastilles, qui restent masquees tant qu'il n'a pas tourne.
+// Rien ne casse si le script echoue.
+.carousel {
+  position: relative;
+}
+
+.carousel-viewport {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  // Marge de respiration pour que l'ombre des cartes ne soit pas rognee.
+  padding: 14px 4px 24px;
+  margin: 0 -4px;
+
+  // Barre de defilement masquee : la navigation se fait aux fleches, aux
+  // pastilles, au clavier ou au glissement.
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.carousel-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 2 * 28px) / 3);
+  gap: 28px;
+  list-style: none;
+
+  @include m.respond-to('md') {
+    grid-auto-columns: 88%;
+  }
+}
+
+.carousel-slide {
+  scroll-snap-align: start;
+  display: flex;
+}
+
+// Carte de temoignage, alignee sur le style des autres cartes du site.
+.temoignage {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: #fff;
+  border-radius: 22px;
+  padding: 34px 30px 28px;
+  box-shadow: 0 10px 30px rgba(91, 58, 122, .07);
+  border: 1px solid rgba(168, 127, 194, .12);
+
+  // Guillemet ouvrant en filigrane, dans la serif du site.
+  &::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 3.4rem;
+    line-height: .8;
+    color: var(--rose);
+    margin-bottom: 8px;
+  }
+
+  blockquote {
+    color: var(--ink-soft);
+    font-size: .98rem;
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+
+  figcaption {
+    font-weight: 700;
+    font-size: .88rem;
+    color: var(--violet-deep);
+  }
+
+  .lieu {
+    display: block;
+    font-weight: 400;
+    font-size: .82rem;
+    color: var(--mauve);
+    margin-top: 2px;
+  }
+}
+
+// --- Commandes, revelees par le JavaScript -----------------------------------
+.carousel-controls {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 6px;
+}
+
+.carousel[data-ready] .carousel-controls {
+  display: flex;
+}
+
+.carousel-nav {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(124, 90, 166, .3);
+  background: #fff;
+  color: var(--violet-deep);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .25s ease, border-color .25s ease, transform .25s ease;
+
+  &:hover:not(:disabled) {
+    background: rgba(124, 90, 166, .08);
+    transform: translateY(-2px);
+  }
+
+  &:disabled {
+    opacity: .35;
+    cursor: default;
+  }
+
+  .ico {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 9px;
+}
+
+.carousel-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(124, 90, 166, .25);
+  cursor: pointer;
+  transition: background .25s ease, transform .25s ease;
+
+  &[aria-current='true'] {
+    background: var(--violet);
+    transform: scale(1.3);
+  }
+}

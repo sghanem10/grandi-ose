@@ -38,7 +38,9 @@ header {
 
 .nav-links {
   display: flex;
-  gap: 28px;
+  // 22px au lieu de 28 : la navigation est passee de 5 a 6 entrees avec
+  // l'ajout des temoignages et le dedoublement « Pourquoi ? » / « Pour qui ? ».
+  gap: 22px;
   font-size: .92rem;
   font-weight: 600;
   color: var(--ink-soft);

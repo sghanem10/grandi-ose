@@ -76,6 +76,9 @@
   }
 }
 
+// Logo Grandi-Ose, le plus grand affichage du logo sur le site.
+// Agrandi de min(380px, 80%) a min(460px, 92%) : la suppression de l'ornement
+// vegetal qui occupait ce coin a libere la place.
 .hero-visual {
   position: relative;
   display: flex;
@@ -83,15 +86,10 @@
   align-items: center;
 
   img {
-    width: min(380px, 80%);
-    // INDISPENSABLE depuis l'ajout des attributs width="600" height="600" sur
-    // le <img> du hero. Ces attributs agissent comme des indications de
-    // presentation : le CSS ci-dessus ecrase la largeur, mais sans height:auto
-    // la hauteur resterait figee a 600px et le logo serait etire verticalement.
-    // Avec height:auto, la hauteur redevient deduite du ratio, soit exactement
-    // le rendu d'origine — tout en conservant le benefice des attributs, qui
-    // reservent la place avant chargement et suppriment le decalage de mise
-    // en page.
+    width: min(460px, 92%);
+    // Indispensable tant que le <img> porte des attributs width/height : sans
+    // height:auto, la hauteur resterait figee a celle de l'attribut et le logo
+    // serait etire. Cf. ROADMAP, journal du 14/09/2026.
     height: auto;
     filter: drop-shadow(0 20px 40px rgba(91, 58, 122, .18));
   }

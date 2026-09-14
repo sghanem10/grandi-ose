@@ -24,11 +24,20 @@
   position: sticky;
   top: 110px;
 
+  // Portrait de Geraldine. L'emplacement contenait le logo en guise de
+  // reserve ; il accueille desormais sa photo, ce que la carte appelait depuis
+  // le debut (elle porte son prenom et son role).
+  // Passe de 88 a 140px, en rond : un visage a besoin de place pour se lire.
   img {
-    width: 88px;
-    height: 88px;
+    width: 140px;
+    height: 140px;
     display: block;
     margin-bottom: 20px;
+    border-radius: 50%;
+    // La photo sera recadree dans le cercle, quel que soit son format d'origine.
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 10px 26px rgba(91, 58, 122, .16);
   }
 
   h3 {

@@ -304,7 +304,7 @@ Vérification automatisée : `npm run check` et `node tools/shoot.mjs`.
 | Structure DOM identique | ✅ 155 éléments, + le `<script>` d'amorce |
 | Déclarations CSS identiques | ✅ 407 = 407, ensembles égaux |
 | **Cascade identique** (déclaration gagnante par élément × propriété) | ✅ 1 116 couples en desktop, 1 119 en mobile, **0 divergence** |
-| Comparaison pixel à pixel (3 largeurs × 3 positions) | ✅ 0 % d'écart sur 6 captures ; 0,34 à 1,33 % sur les 3 captures du hero, imputables à la palettisation du logo (arbitrage documenté au journal) |
+| Comparaison pixel à pixel | ⚠️ **Portée réduite, voir ci-dessous.** 0,34 à 1,33 % d'écart sur les 3 captures du haut de page, imputables à la palettisation du logo (arbitrage documenté au journal) |
 | Poids de la page | ✅ 795,7 Ko → **194,5 Ko** tout compris, dont 115,8 Ko de polices déjà téléchargées auparavant |
 | HTML seul | ✅ 795,7 Ko → **11,1 Ko** (−98,6 %) |
 | Accents et caractères spéciaux (`é`, `·e`, `œ`, `À`) | ✅ UTF-8 préservé, contrôlé par le diff de texte |
@@ -314,6 +314,20 @@ Vérification automatisée : `npm run check` et `node tools/shoot.mjs`.
 
 Restent à mesurer une fois le site en ligne : Lighthouse et les Core Web Vitals,
 qui nécessitent un serveur réel (phase 5).
+
+> ⚠️ **Correction apportée le 14/09/2026, en cours de phase 6.**
+> Le bilan initial annonçait « 0 % d'écart sur 6 des 9 captures ». Ces 6 captures
+> visaient les ancres `#metier` et `#contact`. Vérification faite, **Chrome en
+> mode headless historique ne tient pas compte du défilement** pour
+> `--screenshot` : ces 6 images étaient vides des deux côtés, et leur égalité ne
+> prouvait rien. La comparaison visuelle de la phase 1 n'a donc réellement porté
+> que sur le haut de page.
+>
+> La conclusion, elle, ne change pas : la preuve de fond est le **contrôle D de
+> `npm run check`**, qui compare la déclaration CSS gagnante pour chacun des
+> 155 éléments du document sur 1 116 couples (élément, propriété) aux deux
+> points de rupture, et qui couvre donc la page entière. `tools/shoot.mjs` a été
+> corrigé : il capture désormais la page entière en une seule image.
 
 ---
 
@@ -648,19 +662,38 @@ statut juridique et **SIRET** · adresse (même non publiée — requise par Goo
 
 ## Phase 6 — Modifications de contenu et de design
 
-> Rien ici n'est engagé sans demande explicite (R1/R2). Liste tenue à jour au fil des constats.
+> **Remontée et réalisée en priorité le 14/09/2026**, avant les phases 2 à 5,
+> sur la base de `.claude/changements-contenu.md`.
+
+### Réalisé
+
+| # | Demande | Ce qui a été fait |
+|---|---|---|
+| 1 | Supprimer l'arbuste en fond à droite | SVG décoratif retiré du hero ; partial `_botanical.scss` supprimé |
+| 2 | Agrandir le logo principal | Logo du hero passé de `min(380px, 80%)` à `min(460px, 92%)`, soit **415 px au lieu de 361** à 1440 px de large. La suppression de l'ornement végétal a libéré la place |
+| 3 | Emplacement pour le portrait de Géraldine | Dans la **carte « Géraldine »** de la section « Mon histoire » — la carte porte déjà son prénom et son rôle, c'est sa place naturelle. Cercle de 140 px (au lieu de 88), `object-fit: cover`, SVG de réserve `portrait-placeholder.svg` en attendant la photo |
+| 4 | Pictogrammes dans « La kinésiologie » | Trois SVG en trait fin remplacent les puces rondes : ondes d'écoute, chemin jalonné, feuille |
+| 5 | Échanger « Mon histoire » et « La kinésiologie » | Ordre inversé dans la page **et** dans la navigation |
+| 6 | « Pour qui ? » devient « Pourquoi ? » | `#pourqui` → `#pourquoi`. Titre et chapô adaptés : le contenu énonce des motifs, pas des profils |
+| 7 | « Le déroulement » devient « Pour qui ? » | Nouvelle section à trois cartes (Enfants / Adultes / Chacun·e) + illustration en constellation. Les « trois temps » ont été **rapatriés dans « La kinésiologie »**, rien n'est perdu |
+| 8 | Boutons « Je prends rendez-vous » | Hero et section offre ; « Je prends RDV » pour le bouton compact de l'en-tête |
+| 9 | Remplacer « On en parle ? » | Devenu **« Je vous écoute »**, en écho au champ lexical de l'écoute présent partout dans les textes |
+| 9b | Pictogrammes du contact incohérents | Les trois emoji (📍 🗓️ ✉️) remplacés par des SVG en trait fin |
+| 10 | Section témoignages en carrousel | Défilement natif avec accrochage, flèches et pastilles ajoutées par JS, masquées s'il n'y a rien à faire défiler |
+
+### Reste à faire
 
 | Sujet | Pourquoi | Priorité |
 |---|---|---|
-| **Menu mobile** | Il n'y a **aucune navigation en dessous de 860 px** (l. 250). Un visiteur sur mobile — la majorité — ne peut pas naviguer autrement qu'en scrollant. | 🔴 Haute |
-| **Vraies images** | Le logo sert de placeholder pour l'illustration hero et le portrait (l. 304, 314). | 🔴 Haute |
-| Coordonnées réelles | Le bloc contact (l. 424-435) n'affiche ni téléphone ni email. | 🔴 Haute |
-| Année du footer | `© 2026` figé (l. 458) → automatique en JS. | Basse |
+| **Menu mobile** | Il n'y a toujours **aucune navigation sous 860 px**. Le problème s'aggrave : la page compte désormais 6 sections au lieu de 4. | 🔴 Haute |
+| **Vraie photo de Géraldine** | La carte « Géraldine » affiche un emplacement de réserve. Format carré, 720 px minimum, visage centré. | 🔴 Haute |
+| **Vrais témoignages** | Les trois cartes contiennent des textes de réserve explicites. **Ne pas publier de faux avis** : c'est une pratique commerciale trompeuse (art. L121-2 du code de la consommation). Recueillir l'accord écrit de chaque personne. | 🔴 Haute |
+| Coordonnées réelles | Le bloc contact n'affiche ni téléphone ni email. | 🔴 Haute |
+| Année du footer | `© 2026` figé → automatique en JS. | Basse |
 | Nettoyage CSS mort | `.card3 .icon`, `.nav-toggle` orphelins. | Basse |
-| Apparition au scroll | `IntersectionObserver`, dans le respect de `prefers-reduced-motion` (déjà géré). | Optionnelle |
+| Apparition au scroll | `IntersectionObserver`, dans le respect de `prefers-reduced-motion`. | Optionnelle |
 | Lien actif au scroll | Indicateur de position dans le menu. | Optionnelle |
 | Prise de RDV en ligne | Cal.com — convertit mieux qu'un formulaire. | À discuter |
-| *(tes modifications)* | À détailler. | — |
 
 ---
 

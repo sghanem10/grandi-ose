@@ -15,7 +15,16 @@
       "PowerShell(node tools/build-html.mjs)",
       "PowerShell(npm install *)",
       "PowerShell(npm run *)",
-      "PowerShell(node tools/shoot.mjs)"
+      "PowerShell(node tools/shoot.mjs)",
+      "PowerShell(node tools/preview.mjs 1440)",
+      "PowerShell(node tools/_geom.mjs)",
+      "PowerShell(node tools/fullpage.mjs 1440 5800; node -e \"const s=require\\('sharp'\\);\\(async\\(\\)=>{const m=await s\\('.captures/page-1440.png'\\).metadata\\(\\);console.log\\('image',m.width+'x'+m.height\\);for\\(let i=0;i<5;i++\\){const top=Math.round\\(i*m.height/5\\);const h=Math.min\\(Math.round\\(m.height/5\\),m.height-top\\);await s\\('.captures/page-1440.png'\\).extract\\({left:0,top,width:m.width,height:h}\\).resize\\({width:1000}\\).png\\(\\).toFile\\('.captures/bande-'+\\(i+1\\)+'.png'\\);console.log\\('bande-'+\\(i+1\\)+'.png  y='+top\\);}}\\)\\(\\)\")",
+      "PowerShell(node tools/fullpage.mjs 390 7600; node -e \"const s=require\\('sharp'\\);\\(async\\(\\)=>{const f='.captures/page-1440.png';const m=await s\\(f\\).metadata\\(\\);await s\\(f\\).extract\\({left:330,top:2950,width:780,height:420}\\).png\\(\\).toFile\\('.captures/zoom-constellation.png'\\);console.log\\('zoom-constellation.png ok'\\);}\\)\\(\\)\")",
+      "PowerShell(node -e \"const s=require\\('sharp'\\);s\\('.captures/page-1440.png'\\).extract\\({left:400,top:3270,width:640,height:270}\\).resize\\({width:900}\\).png\\(\\).toFile\\('.captures/zoom-constellation.png'\\).then\\(\\(\\)=>console.log\\('ok'\\)\\)\")",
+      "PowerShell(Out-Null *)",
+      "PowerShell(node tools/_probe390.mjs)",
+      "PowerShell(Remove-Item *)",
+      "PowerShell(git *)"
     ]
   }
 }

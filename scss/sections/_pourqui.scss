@@ -1,16 +1,53 @@
 @use '../abstracts/mixins' as m;
 
+// Nouvelle section « Pour qui ? », qui remplace « Le deroulement ».
+// Elle reprend le visuel en trois cartes de la section « Pourquoi ? ».
 .pourqui {
-  background: linear-gradient(160deg, #fff 0%, var(--rose-pale) 100%);
+  background: #fff;
 }
 
-// Les cartes elles-memes : components/_cards.scss (.card3)
-.cards3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+// Illustration en constellation : des silhouettes de tailles differentes
+// (enfant, adulte, aine) reliees par des lignes, dans l'esprit d'une
+// constellation familiale. Meme finesse de trait que le logo.
+.constellation {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  margin: 0 auto 50px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  // Les corps : trait le plus visible. Epaissi pour tenir face aux tetes,
+  // qui sont pleines — sans cela les arcs paraissent fileux.
+  .figure {
+    stroke: var(--mauve);
+    stroke-width: 2.6;
+  }
+
+  // Les liens de constellation entre les silhouettes : plus discrets.
+  .link {
+    stroke: var(--violet);
+    stroke-width: .9;
+    opacity: .45;
+    stroke-dasharray: 3 5;
+  }
+
+  // Tetes et etoiles.
+  .dot {
+    fill: var(--violet);
+    stroke: none;
+  }
+
+  .star {
+    stroke: var(--rose);
+    stroke-width: 1.1;
+    opacity: .85;
+  }
 
   @include m.respond-to('md') {
-    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin-bottom: 38px;
   }
 }

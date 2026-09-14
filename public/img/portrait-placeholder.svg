@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  EMPLACEMENT RESERVE AU PORTRAIT DE GERALDINE.
+
+  A remplacer par la vraie photo des qu'elle est disponible :
+    1. deposer le fichier dans public/img/ (idealement portrait-geraldine.jpg,
+       carre, 720x720 minimum, visage centre)
+    2. dans public/index.html, remplacer le src de l'image du hero
+    3. mettre a jour l'attribut alt
+
+  Le CSS applique object-fit: cover et un masque circulaire : une photo de
+  n'importe quel format sera recadree proprement, sans deformation.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720" width="720" height="720" role="img" aria-label="Emplacement reserve au portrait de Geraldine">
+  <defs>
+    <linearGradient id="fond" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f7e9f2"/>
+      <stop offset="100%" stop-color="#fdfbfa"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="720" height="720" fill="url(#fond)"/>
+
+  <!-- Buste stylise, au meme trait fin que le logo et les pictogrammes.
+       Les proportions sont calees pour rester lisibles a 140px d'affichage,
+       taille reelle dans la carte « Geraldine ». -->
+  <g fill="none" stroke="#a87fc2" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" opacity="0.6">
+    <circle cx="360" cy="262" r="96"/>
+    <path d="M186 500c0-96 78-174 174-174s174 78 174 174"/>
+  </g>
+
+  <text x="360" y="628" text-anchor="middle"
+        font-family="Nunito, system-ui, sans-serif" font-size="62" font-weight="700"
+        fill="#a87fc2" opacity="0.8">Photo à venir</text>
+</svg>

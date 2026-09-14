@@ -1,0 +1,20 @@
+// Pictogrammes en trait fin, dessines pour s'accorder au logo : meme finesse de
+// trait, memes extremites arrondies, aucun aplat de couleur. Ils remplacent
+// d'une part les puces rondes de la section « La kinesiologie », d'autre part
+// les emoji de la section contact, qui detonnaient avec le reste du design.
+//
+// La couleur vient de currentColor : chaque contexte impose la sienne.
+.ico {
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  // Les points pleins (têtes, perles de chemin) portent cette classe.
+  .solid {
+    fill: currentColor;
+    stroke: none;
+  }
+}
