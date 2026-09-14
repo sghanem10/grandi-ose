@@ -1,0 +1,33 @@
+@use '../abstracts/mixins' as m;
+
+// Cartes d'apercu de l'accueil : chacune mene a une page du site.
+// Elles reprennent .card3, en version cliquable.
+.apercu {
+  background: #fff;
+}
+
+.card3.card-link {
+  display: flex;
+  flex-direction: column;
+
+  // La fleche indique qu'on change de page, sans ajouter de « lire la suite ».
+  .more {
+    margin-top: auto;
+    padding-top: 16px;
+    font-size: .88rem;
+    font-weight: 700;
+    color: var(--violet);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    &::after {
+      content: '\2192'; // fleche vers la droite
+      transition: transform .2s ease;
+    }
+  }
+
+  &:hover .more::after {
+    transform: translateX(4px);
+  }
+}

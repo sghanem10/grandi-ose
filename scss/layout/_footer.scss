@@ -34,3 +34,33 @@ footer {
     margin-bottom: 20px;
   }
 }
+
+// Plan du site en pied de page. Il fait tout le maillage interne : chaque page
+// pointe vers toutes les autres, ce qui fait circuler l'autorite et garantit
+// qu'aucune page n'est orpheline. C'est aussi la seule facon d'atteindre les
+// pages legales, absentes du menu principal.
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 26px;
+  max-width: 760px;
+  margin: 0 auto 22px;
+  font-size: .88rem;
+
+  a {
+    color: rgba(255, 255, 255, .78);
+    transition: color .2s ease;
+
+    &:hover {
+      color: #fff;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    &[aria-current='page'] {
+      color: #fff;
+      font-weight: 700;
+    }
+  }
+}

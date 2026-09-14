@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Grandi-Ose ! Kinésiologie — Thuir</title>
 <meta name="description" content="Grandi-Ose ! Kinésiologie à Thuir. Séances de kinésiologie à domicile ou sur rendez-vous. Première séance découverte offerte.">
+<!-- TODO phase 5 : ajouter <link rel="canonical"> une fois le domaine connu.
+     Volontairement absent : une balise canonical pointant vers un domaine qui
+     n'existe pas encore ferait plus de mal que de bien. -->
 <link rel="stylesheet" href="css/main.css">
 
 <!-- Polices auto-hebergees : les deux fontes du hero sont prechargees pour
@@ -16,19 +19,20 @@
 
 <header>
   <div class="nav">
-    <a href="#" class="nav-logo"><img src="img/logo-80.png" width="80" height="80" alt="Logo Grandi-Ose !"> Grandi-Ose !</a>
-    <!-- L'ordre des entrees suit exactement l'ordre des sections dans la page. -->
-    <nav class="nav-links">
-      <a href="#metier">La kinésiologie</a>
-      <a href="#apropos">Mon histoire</a>
-      <a href="#pourquoi">Pourquoi ?</a>
-      <a href="#pourqui">Pour qui ?</a>
-      <a href="#temoignages">Témoignages</a>
-      <a href="#contact">Contact</a>
+    <a href="index.html" class="nav-logo"><img src="img/logo-80.png" width="80" height="80" alt="Logo Grandi-Ose !"> Grandi-Ose !</a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="index.html" aria-current="page">Accueil</a>
+      <a href="kinesiologie-thuir.html">La kinésiologie</a>
+      <a href="qui-suis-je.html">Qui suis-je</a>
+      <a href="seance-decouverte.html">Séance offerte</a>
+      <a href="faq.html">Questions fréquentes</a>
+      <a href="contact.html">Contact</a>
     </nav>
-    <a href="#contact" class="nav-cta">Je prends RDV</a>
+    <a href="contact.html" class="nav-cta">Je prends RDV</a>
   </div>
 </header>
+
+<main>
 
 <section class="hero">
   <div class="container hero-grid">
@@ -37,8 +41,8 @@
       <h1>Se sentir <em>aligné·e</em>, dans son corps comme dans sa tête.</h1>
       <p class="lead">Des séances de kinésiologie à domicile ou sur rendez-vous, pour relâcher les tensions, retrouver de l'énergie et avancer plus léger·e dans son quotidien.</p>
       <div class="btn-group">
-        <a href="#contact" class="btn-primary">Je prends rendez-vous</a>
-        <a href="#metier" class="btn-secondary">Découvrir la kinésiologie</a>
+        <a href="contact.html" class="btn-primary">Je prends rendez-vous</a>
+        <a href="kinesiologie-thuir.html" class="btn-secondary">Découvrir la kinésiologie</a>
       </div>
     </div>
     <div class="hero-visual">
@@ -49,184 +53,27 @@
 
 <p class="tagline-strip">"Ça peut aller mieux. Vraiment."</p>
 
-<section class="metier" id="metier">
+<section class="apercu">
   <div class="container">
-    <div class="metier-grid">
-      <div>
-        <span class="section-tag">La kinésiologie</span>
-        <h2 class="section-title">Une approche douce, à l'écoute du corps</h2>
-        <p class="section-intro u-mb-24">La kinésiologie s'appuie sur le test musculaire pour identifier les tensions, les blocages émotionnels ou physiques, et accompagner le corps à retrouver son propre équilibre.</p>
-        <ul class="metier-list">
-          <li>
-            <!-- Ondes d'ecoute -->
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <circle class="solid" cx="6.5" cy="12" r="2"/>
-              <path d="M11.5 7.8a5.8 5.8 0 0 1 0 8.4"/>
-              <path d="M15.4 4.6a10.4 10.4 0 0 1 0 14.8"/>
-            </svg>
-            <span>Une écoute du corps, sans jugement ni diagnostic médical</span>
-          </li>
-          <li>
-            <!-- Chemin jalonne : une seance apres l'autre -->
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M3 17.5c3.6 0 4.2-11 9-11s5.4 11 9 11"/>
-              <circle class="solid" cx="7.4" cy="12.6" r="1.5"/>
-              <circle class="solid" cx="12" cy="6.5" r="1.5"/>
-              <circle class="solid" cx="16.6" cy="12.6" r="1.5"/>
-            </svg>
-            <span>Un accompagnement personnalisé, séance après séance</span>
-          </li>
-          <li>
-            <!-- Feuille : deposer ce qui pese, repartir plus leger -->
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path d="M4.6 19.4C4.6 11.3 9.9 5.4 19.4 4.6c.8 9.5-5.1 14.8-13.2 14.8Z"/>
-              <path d="M4.6 19.4 12 12"/>
-            </svg>
-            <span>Un espace pour déposer ce qui pèse, et avancer plus léger·e</span>
-          </li>
-        </ul>
-      </div>
-      <div class="metier-card">
-        <h3>Comment ça se passe ?</h3>
-        <p>En séance, on prend le temps d'identifier ensemble ce qui a besoin d'être travaillé, puis on utilise le test musculaire pour dialoguer avec le corps et l'accompagner vers un mieux-être durable. Pas besoin de "croire" à quoi que ce soit : le corps parle, on l'écoute.</p>
-      </div>
-    </div>
-
-    <!-- Rapatrie depuis l'ancienne section « Le deroulement », dont l'espace a
-         ete repris par la nouvelle section « Pour qui ? ». -->
-    <h3 class="steps-title">Trois temps, une séance</h3>
-    <div class="steps">
-      <div class="step">
-        <span class="num">I.</span>
-        <h3>On échange</h3>
-        <p>Quelques minutes pour poser ce qui vous amène, sans pression ni jugement.</p>
-      </div>
-      <div class="step">
-        <span class="num">II.</span>
-        <h3>Le corps répond</h3>
-        <p>Le test musculaire permet d'identifier ce qui a besoin d'être rééquilibré.</p>
-      </div>
-      <div class="step">
-        <span class="num">III.</span>
-        <h3>On rééquilibre</h3>
-        <p>Des techniques douces accompagnent le corps vers un mieux-être qui s'installe.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="apropos" id="apropos">
-  <div class="container apropos-grid">
-    <div class="apropos-portrait">
-      <!-- A REMPLACER par la photo de Geraldine. Mode d'emploi dans le fichier
-           SVG lui-meme. Le CSS la recadrera dans le cercle sans deformation. -->
-      <img src="img/portrait-placeholder.svg" width="720" height="720" alt="Géraldine, kinésiologue à Thuir — photo à venir">
-      <h3>Géraldine</h3>
-      <span class="role">Kinésiologue en formation</span>
-      <p>Femme, épouse, maman, sœur, amie… et avant tout curieuse de l'humain et de ses infinies capacités d'évolution.</p>
-      <p class="apropos-quote">"Grandir n'a pas d'âge. Oser être soi demande parfois du courage."</p>
-    </div>
-    <div class="apropos-text">
-      <span class="section-tag">Mon histoire</span>
-      <h2 class="section-title">Pourquoi la kinésiologie</h2>
-      <p>Mon chemin vers la kinésiologie n'a rien d'une ligne droite. Comme beaucoup des personnes que j'accompagnerai, je n'ai pas toujours avancé sur un chemin tranquille : des troubles du comportement alimentaire à l'adolescence, des fausses couches plus tard, qui ont marqué mon parcours de femme. Sur le moment, ces épreuves sont douloureuses. Avec le recul, elles deviennent des invitations à mieux comprendre qui l'on est réellement.</p>
-      <p>Avant la kinésiologie, j'ai passé treize ans à accompagner des personnes en situation de handicap mental dans le cadre de vacances adaptées, entre Montpellier et Perpignan. Ces années ont profondément marqué ma façon de voir le monde : l'écoute véritable, l'adaptation, le respect du rythme de chacun, l'accueil de chaque personne telle qu'elle est.</p>
-      <p class="pull">Chaque être humain possède en lui des ressources immenses, même lorsqu'il les a momentanément oubliées.</p>
-      <details class="read-more">
-        <summary>Lire la suite de mon histoire</summary>
-        <div class="more-content">
-          <p>Mon chemin m'a amenée à explorer différentes approches : les livres, précieux compagnons de route ; les constellations familiales, qui m'ont permis de regarder mon histoire avec davantage de douceur ; la kinésiologie, qui a ouvert des portes que je ne soupçonnais pas. Et puis il y a eu le silence — une rencontre inattendue pour celle qui aime parler, échanger, rire et partager. J'y ai découvert un espace incroyable d'écoute, de recul et de reconnexion : la possibilité d'entendre ce qui se passe réellement à l'intérieur de soi.</p>
-          <h4>Ma vision de l'accompagnement</h4>
-          <p>Je ne crois pas aux solutions miracles. Je crois à la puissance de l'écoute, à l'importance d'être accueilli sans jugement, aux petits pas qui, mis bout à bout, créent de grands changements. Je crois que chacun possède déjà en lui une grande partie des ressources dont il a besoin — parfois, il suffit simplement d'un espace bienveillant pour les retrouver.</p>
-          <h4>Pourquoi "Grandi-ose !"</h4>
-          <p>Parce que grandir n'a pas d'âge. Parce qu'oser être soi demande parfois du courage. Parce que derrière nos peurs, nos blocages ou nos doutes se cache souvent une version de nous-même qui ne demande qu'à s'exprimer. Grandi-ose !, c'est une invitation : l'invitation à te rencontrer, à te découvrir autrement et à oser avancer vers toi-même.</p>
-        </div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<section class="pourquoi" id="pourquoi">
-  <div class="container">
-    <span class="section-tag">Pourquoi ?</span>
-    <h2 class="section-title">Ce qui amène à pousser la porte</h2>
-    <p class="section-intro">On vient en kinésiologie pour souffler, se recentrer, ou mieux comprendre ce que l'on traverse. Voici les motifs les plus fréquents.</p>
+    <span class="section-tag">Par où commencer</span>
+    <h2 class="section-title">Trois portes d'entrée</h2>
+    <p class="section-intro">Prenez le chemin qui vous parle : comprendre la méthode, faire connaissance, ou venir essayer.</p>
     <div class="cards3">
-      <div class="card3">
-        <h3>Stress &amp; charge mentale</h3>
-        <p>Pour relâcher la pression du quotidien, retrouver du sommeil et de l'énergie.</p>
-      </div>
-      <div class="card3">
-        <h3>Étapes de vie</h3>
-        <p>Deuil, séparation, reconversion, parentalité : traverser les transitions plus sereinement.</p>
-      </div>
-      <div class="card3">
-        <h3>Tensions du corps</h3>
-        <p>Douleurs récurrentes, fatigue persistante : écouter ce que le corps essaie de dire.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="pourqui" id="pourqui">
-  <div class="container">
-    <span class="section-tag">Pour qui ?</span>
-    <h2 class="section-title">À chaque âge, un accompagnement possible</h2>
-    <p class="section-intro">Il n'y a pas de profil type. La kinésiologie s'adapte à la personne, à son âge et à son rythme.</p>
-
-    <!-- Constellation de silhouettes : des personnes de tailles differentes,
-         reliees entre elles par des liens pointilles. Trait fin, en echo au
-         logo et aux pictogrammes. Purement decoratif -> aria-hidden. -->
-    <svg class="constellation" viewBox="0 0 520 220" aria-hidden="true" focusable="false">
-      <!-- Liens de constellation, traces en premier pour passer sous les figures -->
-      <g class="link">
-        <path d="M120 153 L258 139"/>
-        <path d="M258 139 L392 146"/>
-        <path d="M120 153 L64 92"/>
-        <path d="M258 139 L300 58"/>
-        <path d="M392 146 L452 86"/>
-      </g>
-
-      <!-- Trois presences : une tete et un arc d'epaules, comme la silhouette
-           du portrait. Meme empattement au sol, tailles differentes. -->
-      <g class="figure">
-        <!-- Enfant -->
-        <path d="M100 180 C100 169 109 160 120 160 C131 160 140 169 140 180"/>
-        <!-- Adulte -->
-        <path d="M228 180 C228 164 241 150 258 150 C275 150 288 164 288 180"/>
-        <!-- Aine -->
-        <path d="M367 180 C367 166 378 155 392 155 C406 155 417 166 417 180"/>
-      </g>
-
-      <g class="dot">
-        <circle cx="120" cy="151" r="9.5"/>
-        <circle cx="258" cy="136" r="14"/>
-        <circle cx="392" cy="143" r="12"/>
-      </g>
-
-      <!-- Etoiles -->
-      <g class="star">
-        <path d="M64 84v16M56 92h16"/>
-        <path d="M300 51v14M293 58h14"/>
-        <path d="M452 79v14M445 86h14"/>
-        <path d="M170 65v11M164.5 70.5h11"/>
-        <path d="M472 164v11M466.5 169.5h11"/>
-      </g>
-    </svg>
-
-    <div class="cards3">
-      <div class="card3">
-        <h3>Enfants</h3>
-        <p>Sommeil agité, angoisses, difficultés à l'école, émotions qui débordent : des gestes doux, adaptés à leur âge et faits avec les parents.</p>
-      </div>
-      <div class="card3">
-        <h3>Adultes</h3>
-        <p>Charge mentale, fatigue qui s'installe, transitions professionnelles ou personnelles : retrouver de la clarté et de l'élan.</p>
-      </div>
-      <div class="card3">
-        <h3>Chacun·e</h3>
-        <p>Adolescents, seniors, en couple ou en famille : la kinésiologie ne demande ni condition ni croyance. Personne n'en est exclu.</p>
-      </div>
+      <a href="kinesiologie-thuir.html" class="card3 card-link">
+        <h3>La kinésiologie</h3>
+        <p>Une approche douce, à l'écoute du corps. Le test musculaire, le déroulement d'une séance, et à qui elle s'adresse.</p>
+        <span class="more">Comprendre la méthode</span>
+      </a>
+      <a href="qui-suis-je.html" class="card3 card-link">
+        <h3>Qui suis-je</h3>
+        <p>Mon chemin vers la kinésiologie, ma vision de l'accompagnement, et ce que veut dire "Grandi-ose !".</p>
+        <span class="more">Faire connaissance</span>
+      </a>
+      <a href="seance-decouverte.html" class="card3 card-link">
+        <h3>Séance découverte</h3>
+        <p>Encore en formation, je propose ma première séance gratuite, avec un suivi personnalisé à la suite.</p>
+        <span class="more">Découvrir l'offre</span>
+      </a>
     </div>
   </div>
 </section>
@@ -291,77 +138,34 @@
   </div>
 </section>
 
-<section class="offre-section" id="offre">
+<section class="offre-section">
   <div class="container">
     <div class="offre">
       <div class="offre-inner">
         <span class="section-tag">En formation, pour vous</span>
         <h2>Une première séance offerte</h2>
         <p>Encore en formation à Perpignan, je propose ma première séance gratuite, avec un suivi personnalisé à la suite. L'occasion idéale de découvrir la kinésiologie, sans engagement.</p>
-        <a href="#contact" class="btn-primary">Je prends rendez-vous</a>
+        <a href="seance-decouverte.html" class="btn-primary">En savoir plus</a>
       </div>
     </div>
   </div>
 </section>
 
-<section class="contact" id="contact">
-  <div class="container contact-grid">
-    <div class="contact-info">
-      <span class="section-tag">Contact</span>
-      <h2 class="section-title">Je vous écoute</h2>
-      <p>À domicile ou dans un espace dédié, sur rendez-vous, à Thuir et ses environs.</p>
-      <div class="info-row">
-        <div class="dot">
-          <!-- Reperage sur une carte -->
-          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11Z"/>
-            <circle cx="12" cy="10" r="2.6"/>
-          </svg>
-        </div>
-        <div><h4>Zone d'intervention</h4><span>Thuir et environs (66, Occitanie)</span></div>
-      </div>
-      <div class="info-row">
-        <div class="dot">
-          <!-- Calendrier -->
-          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <rect x="3.5" y="5.5" width="17" height="15" rx="3.5"/>
-            <path d="M8 3.2v4.6M16 3.2v4.6M3.5 11h17"/>
-          </svg>
-        </div>
-        <div><h4>Sur rendez-vous</h4><span>À domicile ou en espace dédié</span></div>
-      </div>
-      <div class="info-row">
-        <div class="dot">
-          <!-- Enveloppe -->
-          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <rect x="3" y="5.5" width="18" height="13" rx="3.5"/>
-            <path d="m4.4 8.2 6.7 4.9a1.5 1.5 0 0 0 1.8 0l6.7-4.9"/>
-          </svg>
-        </div>
-        <div><h4>Par message</h4><span>Réponse sous 48h</span></div>
-      </div>
-    </div>
-    <form>
-      <div class="form-row">
-        <label for="nom">Nom</label>
-        <input type="text" id="nom" name="nom" placeholder="Votre nom">
-      </div>
-      <div class="form-row">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="votre@email.com">
-      </div>
-      <div class="form-row">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="4" placeholder="Parlez-moi de ce qui vous amène..."></textarea>
-      </div>
-      <button type="submit" class="btn-primary">Envoyer le message</button>
-    </form>
-  </div>
-</section>
+</main>
 
 <footer>
-  <a href="#" class="nav-logo"><img src="img/logo-80.png" width="80" height="80" alt="Logo Grandi-Ose !"> Grandi-Ose !</a>
+  <a href="index.html" class="nav-logo"><img src="img/logo-80.png" width="80" height="80" alt="Logo Grandi-Ose !"> Grandi-Ose !</a>
   <p class="tag">"Ça peut aller mieux. Vraiment."</p>
+  <nav class="footer-links" aria-label="Plan du site">
+    <a href="index.html" aria-current="page">Accueil</a>
+    <a href="kinesiologie-thuir.html">La kinésiologie</a>
+    <a href="qui-suis-je.html">Qui suis-je</a>
+    <a href="seance-decouverte.html">Séance découverte</a>
+    <a href="faq.html">Questions fréquentes</a>
+    <a href="contact.html">Contact</a>
+    <a href="mentions-legales.html">Mentions légales</a>
+    <a href="confidentialite.html">Confidentialité</a>
+  </nav>
   <p>&copy; 2026 Grandi-Ose ! Kinésiologie — Thuir, Occitanie</p>
 </footer>
 

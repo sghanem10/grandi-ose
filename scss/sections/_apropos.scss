@@ -40,6 +40,11 @@
     box-shadow: 0 10px 26px rgba(91, 58, 122, .16);
   }
 
+  // h2 sur la page « Qui suis-je », ou le titre de page est deja pris par le
+  // h1 de la banniere ; h3 partout ou la carte est imbriquee plus bas.
+  // On stylise les deux pour que la hierarchie des titres reste correcte
+  // sans imposer un niveau donne.
+  h2,
   h3 {
     font-size: 1.25rem;
     margin-bottom: 6px;

@@ -23,8 +23,9 @@
 
 // --- Structure ---------------------------------------------------------------
 @use 'layout/container';
-@use 'layout/section';   // socle `section` + .section-tag/-title/-intro
+@use 'layout/section';     // socle `section` + .section-tag/-title/-intro
 @use 'layout/header';
+@use 'layout/page-header'; // banniere des pages interieures
 @use 'layout/footer';
 
 // --- Composants reutilisables ------------------------------------------------
@@ -34,12 +35,15 @@
 @use 'components/icons';
 @use 'components/carousel';
 @use 'components/read-more';
+@use 'components/faq';
+@use 'components/prose';   // pages legales
 
-// --- Sections de la page, dans l'ordre d'affichage ---------------------------
-@use 'sections/hero';
+// --- Sections, dans leur ordre d'apparition au fil du site -------------------
+@use 'sections/hero';         // accueil
 @use 'sections/tagline';
+@use 'sections/apercu';       // accueil : cartes vers les autres pages
 @use 'sections/metier';       // « La kinesiologie » (+ les 3 temps d'une seance)
-@use 'sections/apropos';      // « Mon histoire »
+@use 'sections/apropos';      // « Qui suis-je »
 @use 'sections/pourquoi';     // « Pourquoi ? » (motifs de consultation)
 @use 'sections/pourqui';      // « Pour qui ? » (profils)
 @use 'sections/temoignages';

@@ -1,0 +1,90 @@
+@use '../abstracts/mixins' as m;
+
+// Marque les informations que Geraldine doit fournir avant publication.
+// Volontairement TRES visible, et hors de .prose pour servir partout (FAQ
+// comprise) : on ne doit pas pouvoir mettre le site en ligne sans les voir.
+.todo {
+  display: inline-block;
+  background: #fff3cd;
+  border: 1px dashed #b8860b;
+  border-radius: 6px;
+  padding: 1px 8px;
+  color: #7a5a00;
+  font-weight: 700;
+  font-size: .92em;
+}
+
+// Bloc de texte long : pages legales, politique de confidentialite.
+// Ces pages n'ont pas de mise en page particuliere, seulement du texte a lire
+// confortablement. Largeur bornee a ~70 caracteres, la limite au-dela de
+// laquelle l'oeil perd sa ligne.
+.prose {
+  max-width: 72ch;
+  color: var(--ink-soft);
+
+  h2 {
+    font-size: 1.4rem;
+    margin: 46px 0 14px;
+  }
+
+  h3 {
+    font-size: 1.08rem;
+    margin: 28px 0 10px;
+  }
+
+  > :first-child {
+    margin-top: 0;
+  }
+
+  p,
+  li {
+    margin-bottom: 14px;
+    font-size: 1rem;
+  }
+
+  ul,
+  ol {
+    margin: 0 0 18px 22px;
+  }
+
+  a {
+    color: var(--violet);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: var(--violet-deep);
+    }
+  }
+
+  strong {
+    color: var(--violet-deep);
+  }
+
+  // Encadre d'avertissement ou de precision.
+  .note {
+    background: var(--rose-pale);
+    border-left: 3px solid var(--mauve);
+    border-radius: 0 12px 12px 0;
+    padding: 18px 22px;
+    margin: 24px 0;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  dl {
+    margin-bottom: 18px;
+  }
+
+  dt {
+    font-weight: 700;
+    color: var(--violet-deep);
+    margin-top: 14px;
+  }
+
+  dd {
+    margin-left: 0;
+  }
+}

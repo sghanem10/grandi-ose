@@ -13,7 +13,7 @@
 4. [Arborescence cible](#4--arborescence-cible)
 5. [**Phase 1 — Découpage HTML / SCSS / JS**](#phase-1--découpage-html--scss--js) ✅ *terminée le 14/09/2026*
 6. [Phase 2 — SEO technique](#phase-2--seo-technique-iso-visuel)
-7. [Phase 3 — Éclatement multi-pages](#phase-3--éclatement-multi-pages)
+7. [Phase 3 — Éclatement multi-pages](#phase-3--éclatement-multi-pages) ✅ *terminée le 14/09/2026*
 8. [Phase 4 — Formulaire → email](#phase-4--formulaire--email)
 9. [Phase 5 — Mise en ligne](#phase-5--mise-en-ligne)
 10. [Phase 6 — Modifications de contenu et de design](#phase-6--modifications-de-contenu-et-de-design)
@@ -399,28 +399,39 @@ Cibles : **LCP < 2,5 s · CLS < 0,1 · INP < 200 ms**. Après la Phase 1, ces ci
 
 Deuxième argument, indépendant du SEO : **les mentions légales et la politique de confidentialité sont obligatoires** (LCEN + RGPD dès qu'un formulaire existe). Il faut de toute façon des pages supplémentaires.
 
-### Architecture retenue
+### Architecture retenue — **réalisée**
 
-```
-/                        accueil — hero, promesse, aperçu des sections, CTA
-/kinesiologie-thuir      page « métier + ville » : la vraie page de référencement local
-/seance-decouverte       l'offre — page de conversion
-/qui-suis-je             l'histoire de Géraldine
-/faq                     longue traîne + JSON-LD FAQPage
-/contact                 formulaire + informations pratiques
-/mentions-legales
-/confidentialite
-(plus tard) /blog/…
-```
+| Fichier | Contenu | Cible de recherche |
+|---|---|---|
+| `index.html` | Hero, trois portes d'entrée, témoignages, bandeau offre | marque + « kinésiologue Thuir » |
+| `kinesiologie-thuir.html` | Méthode, trois temps, motifs (« Pourquoi ? »), profils (« Pour qui ? ») | « kinésiologie Thuir », « séance de kinésiologie » |
+| `qui-suis-je.html` | Histoire complète, vision de l'accompagnement, origine du nom | « Géraldine kinésiologue », autorité (E-E-A-T) |
+| `seance-decouverte.html` | L'offre, le déroulement, le cadre | « séance kinésiologie offerte Perpignan » |
+| `faq.html` | 11 questions | longue traîne |
+| `contact.html` | Formulaire, informations pratiques | « contact kinésiologue Thuir » |
+| `mentions-legales.html` | LCEN — `noindex, follow` | — |
+| `confidentialite.html` | RGPD — `noindex, follow` | — |
 
-**Aucun texte n'est réécrit : le contenu existant est redistribué.** Le bloc masqué dans le `<details>` « Lire la suite de mon histoire » (l. 326-335) est du contenu de qualité aujourd'hui à moitié caché : il devient l'essentiel de `/qui-suis-je`, pleinement indexable. Les seuls textes **nouveaux** sont les pages légales (obligatoires) et la FAQ.
+**Consolidé plutôt qu'éparpillé.** Le plan initial prévoyait des pages séparées pour « Pourquoi ? » et « Pour qui ? ». Comme la règle R2 interdit d'inventer du contenu, ces pages auraient tenu en trois cartes chacune : des pages minces, que Google déclasse. Elles sont donc réunies dans la page pilier `kinesiologie-thuir.html`, qui y gagne en substance.
 
-### Mise en œuvre
+**Aucun texte existant n'a été réécrit : il a été redistribué.** Le bloc replié dans le `<details>` « Lire la suite de mon histoire » est désormais du texte courant sur `/qui-suis-je`, pleinement indexable. Les seuls textes **nouveaux** sont la FAQ et les pages légales, comme prévu.
 
-- Une partie du HTML est commune (header, footer, `<head>`). Sans générateur de site statique (R4), la duplication se gère par **copier-coller discipliné** : 6 fichiers à modifier si le menu change. Acceptable à cette échelle. Si ça devient pénible, on réévaluera (Eleventy, gratuit).
-- Redirections 301 des anciennes ancres (`/#apropos` → `/qui-suis-je`) via `public/_redirects`.
-- Maillage interne : chaque page pointe vers 2 ou 3 autres. C'est ce qui fait circuler l'autorité.
-- Un `<h1>` unique par page, `title` et `description` propres à chacune, `canonical` par page.
+### Mise en œuvre — ce qui a été fait
+
+- **Blocs partagés** : `<header>` et `<footer>` recopiés à l'identique dans les 8 fichiers. `npm run links` vérifie qu'ils ne divergent pas, aux deux exceptions légitimes près (`aria-current="page"`, et la cible du bouton RDV sur la page Contact).
+- **Maillage interne** : chaque page se termine par trois cartes vers d'autres pages, et le pied de page liste les 8 pages. Aucune page orpheline.
+- **Fil d'ariane** textuel sur chaque page intérieure.
+- **Un `<h1>` unique par page**, hiérarchie de titres sans saut de niveau, `title` et `description` propres et distincts — le tout vérifié automatiquement.
+- **Bannière d'en-tête allégée** (`.page-header`) pour les pages intérieures : le hero en 100vh de l'accueil serait intenable sur une page qu'on vient lire.
+- **Pages légales en `noindex, follow`** : sans intérêt dans les résultats de recherche, mais accessibles aux visiteurs, ce qui est l'obligation.
+- **24 informations manquantes** signalées en jaune vif sur le site et listées par `npm run links`.
+
+### Deux écarts par rapport au plan initial
+
+| Prévu | Réalisé | Motif |
+|---|---|---|
+| Redirections 301 des anciennes ancres via `_redirects` | **Abandonné** | Techniquement impossible : un fragment d'URL (`#apropos`) n'est jamais transmis au serveur, donc aucune règle de redirection ne peut le voir. Et sans site publié, il n'existe aucune ancienne URL à rediriger. Un script côté navigateur serait du code mort. |
+| `canonical` par page | **Reporté en phase 5** | La balise exige une URL absolue. Pointer vers un domaine qui n'existe pas encore serait pire que de ne rien mettre. Un commentaire `TODO` marque l'emplacement dans chaque `<head>`. |
 
 ### SEO local — le levier n°1, et il est hors du site
 
@@ -767,4 +778,8 @@ Les trois tâches « en parallèle » de l'étape 1 sont celles dont le délai n
 | 14/09/2026 | **`height: auto` ajouté sur `.hero-visual img`** | Rendu nécessaire par l'ajout des attributs `width`/`height` : ces indications de présentation fixaient la hauteur à 600 px alors que le CSS n'écrasait que la largeur, ce qui étirait le logo. Détecté par la comparaison visuelle, pas par l'analyse statique — le vérificateur a été corrigé pour couvrir ce cas. |
 | 14/09/2026 | **CSS compilé (`public/css/main.css`) versionné** | Permet de déployer sans étape de build côté hébergeur. Contrepartie : cache busting manuel via `?v=`, documenté dans le README. |
 | 14/09/2026 | **`latin-ext` livré mais jamais téléchargé** | Vérifié : tous les caractères du texte tiennent dans le sous-ensemble `latin` (le `œ` de « sœur » est en U+0153, inclus dans `U+0152-0153`). Les fichiers `latin-ext` restent en filet de sécurité pour de futures modifications de texte, sans coût aujourd'hui grâce à `unicode-range`. |
+| 14/09/2026 | **Multi-pages consolidé en 8 pages, pas 11** | Des pages « Pourquoi ? » et « Pour qui ? » séparées auraient tenu en trois cartes chacune. La règle R2 interdisant d'inventer du contenu, elles auraient été minces — ce que Google pénalise. Réunies dans la page pilier. |
+| 14/09/2026 | **Redirections d'anciennes ancres abandonnées** | Le plan les prévoyait dans `_redirects`. Un fragment d'URL n'est jamais envoyé au serveur : la règle ne pourrait pas s'appliquer. Et le site n'ayant jamais été publié, il n'existe aucune ancienne URL. |
+| 14/09/2026 | **`canonical` reporté en phase 5** | Exige une URL absolue. Une canonical pointant vers un domaine inexistant nuirait plus qu'elle n'aiderait. Emplacement marqué par un `TODO` dans chaque `<head>`. |
+| 14/09/2026 | **Informations manquantes marquées en jaune sur le site** | 24 éléments (SIRET, tarif, durée, hébergeur…) que je ne peux pas inventer. Un commentaire HTML se rate ; un surlignage jaune vif en pleine page, non. `npm run links` les liste également. |
 | 14/09/2026 | **Gain sur les polices : latence et RGPD, pas volume** | Correction d'une estimation trop optimiste du plan initial : les graisses déclarées mais inutilisées n'étaient de toute façon jamais téléchargées (Google Fonts les découpe déjà par `unicode-range`). Le bénéfice réel est la suppression de deux connexions tierces bloquantes et du transfert d'IP hors UE. |

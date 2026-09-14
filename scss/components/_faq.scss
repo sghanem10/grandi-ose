@@ -1,0 +1,80 @@
+@use '../abstracts/mixins' as m;
+
+// Accordeon des questions frequentes.
+// Repose sur <details>/<summary> natifs : fonctionne sans JavaScript, est
+// accessible au clavier par defaut, et Google sait lire le contenu replie.
+.faq {
+  max-width: 780px;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(168, 127, 194, .22);
+
+  &:first-of-type {
+    border-top: 1px solid rgba(168, 127, 194, .22);
+  }
+
+  summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 22px 4px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.12rem;
+    color: var(--violet-deep);
+    transition: color .2s ease;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &:hover {
+      color: var(--violet);
+    }
+
+    // Chevron, pivote a l'ouverture.
+    &::after {
+      content: '';
+      flex-shrink: 0;
+      width: 10px;
+      height: 10px;
+      margin-top: 7px;
+      border-right: 2px solid var(--mauve);
+      border-bottom: 2px solid var(--mauve);
+      transform: rotate(45deg);
+      transition: transform .25s ease;
+    }
+  }
+
+  &[open] summary::after {
+    transform: rotate(-135deg);
+  }
+
+  .answer {
+    padding: 0 4px 24px;
+    color: var(--ink-soft);
+
+    p {
+      margin-bottom: 12px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      color: var(--violet);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  }
+
+  @include m.respond-to('md') {
+    summary {
+      font-size: 1.02rem;
+    }
+  }
+}

@@ -48,10 +48,15 @@
     height: 19px;
   }
 
+  // h3 depuis le passage en multi-pages : sur la page Contact, le h2 est pris
+  // par « En pratique », et sauter de h2 a h4 casserait la hierarchie.
+  h3,
   h4 {
     font-size: .98rem;
     color: var(--violet-deep);
     margin-bottom: 3px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
   }
 
   span {

@@ -1,6 +1,6 @@
 /**
  * Capture de la page ENTIERE, en une image.
- *   node tools/fullpage.mjs [largeur] [hauteurMax]
+ *   node tools/fullpage.mjs [largeur] [hauteurMax] [fichier.html]
  *
  * Chrome en mode headless historique ne capture que la fenetre, et ignore le
  * defilement : on agrandit donc la fenetre a la taille du document. Seul
@@ -32,6 +32,7 @@ const MIN_WIDTH = 500;
 const asked = Number(process.argv[2]) || 1440;
 const WIDTH = Math.max(asked, MIN_WIDTH);
 const MAXH = Number(process.argv[3]) || 6400;
+const PAGE = process.argv[4] || 'index.html';
 
 if (WIDTH !== asked) {
   console.log(`Largeur ${asked}px portee a ${WIDTH}px (minimum impose par Chrome).`);
@@ -49,7 +50,7 @@ const INJECT = '<style>html{scroll-behavior:auto !important}.hero{min-height:0 !
 
 const server = createServer((req, res) => {
   let url = decodeURIComponent(req.url.split('?')[0]);
-  if (url === '/') url = '/index.html';
+  if (url === '/') url = `/${PAGE}`;
   const file = normalize(join('public', url));
   if (existsSync(file) && statSync(file).isFile()) {
     res.writeHead(200, { 'Content-Type': MIME[extname(file)] || 'application/octet-stream' });
@@ -64,7 +65,7 @@ const server = createServer((req, res) => {
 mkdirSync(OUT, { recursive: true });
 
 server.listen(PORT, async () => {
-  const out = `${OUT}/page-${WIDTH}.png`;
+  const out = `${OUT}/page-${PAGE.replace(/\.html$/, '')}-${WIDTH}.png`;
   const profile = join(tmpdir(), `cr-${Math.random().toString(36).slice(2)}`);
   try {
     await execFileAsync(CHROME, [

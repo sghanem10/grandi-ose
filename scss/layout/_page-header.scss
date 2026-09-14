@@ -1,0 +1,54 @@
+@use '../abstracts/mixins' as m;
+
+// Banniere d'en-tete des pages interieures.
+// Le hero de l'accueil fait 100vh ; ce serait intenable sur chaque page, ou le
+// visiteur arrive pour lire. On garde le meme degrade et la meme typographie,
+// en beaucoup plus court.
+.page-header {
+  padding: 150px 0 60px; // 150 en haut : l'en-tete fixe mesure ~68px
+  background: linear-gradient(160deg, var(--rose-pale) 0%, var(--cream) 60%);
+  position: relative;
+
+  h1 {
+    font-size: clamp(2rem, 3.6vw, 2.9rem);
+    line-height: 1.15;
+    margin-bottom: 18px;
+    max-width: 15ch;
+  }
+
+  .lead {
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    max-width: 620px;
+  }
+
+  @include m.respond-to('md') {
+    padding: 120px 0 46px;
+
+    h1 {
+      max-width: none;
+    }
+  }
+}
+
+// Fil d'ariane textuel, discret, au-dessus du titre.
+.breadcrumb {
+  font-size: .82rem;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+
+  a:hover {
+    color: var(--violet);
+    text-decoration: underline;
+  }
+
+  .sep {
+    margin: 0 8px;
+    color: var(--mauve);
+  }
+
+  [aria-current='page'] {
+    color: var(--violet-deep);
+    font-weight: 600;
+  }
+}

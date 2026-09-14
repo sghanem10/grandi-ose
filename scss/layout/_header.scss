@@ -49,6 +49,16 @@ header {
     color: var(--violet);
   }
 
+  // Page courante. Le site etant multi-pages, le visiteur doit savoir ou il
+  // est. aria-current="page" porte l'information pour les lecteurs d'ecran ;
+  // le soulignement la rend visible pour les autres.
+  a[aria-current='page'] {
+    color: var(--violet-deep);
+    font-weight: 700;
+    border-bottom: 2px solid var(--mauve);
+    padding-bottom: 2px;
+  }
+
   // Override d'origine (ancienne ligne 250), conserve tel quel.
   // /!\ Consequence : sous 860px la page n'a plus aucune navigation, car il
   // n'existe aucun element .nav-toggle dans le HTML. Corriger cela reviendrait
