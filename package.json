@@ -1,0 +1,22 @@
+{
+  "name": "grandi-ose",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site vitrine Grandi-Ose ! - Kinesiologie a Thuir (66)",
+  "scripts": {
+    "dev": "sass --watch --source-map scss/main.scss:public/css/main.css",
+    "css": "sass --no-source-map --style=expanded scss/main.scss:public/css/main.css",
+    "css:min": "sass --no-source-map --style=compressed scss/main.scss:public/css/main.css",
+    "img": "node tools/build-images.mjs",
+    "fonts": "node tools/build-fonts.mjs",
+    "build": "npm run css:min",
+    "check": "node tools/check-regression.mjs"
+  },
+  "devDependencies": {
+    "@fontsource/nunito": "^5.3.0",
+    "@fontsource/playfair-display": "^5.3.0",
+    "linkedom": "^0.18.13",
+    "sass": "^1.93.2",
+    "sharp": "^0.34.4"
+  }
+}

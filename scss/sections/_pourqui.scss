@@ -1,0 +1,16 @@
+@use '../abstracts/mixins' as m;
+
+.pourqui {
+  background: linear-gradient(160deg, #fff 0%, var(--rose-pale) 100%);
+}
+
+// Les cartes elles-memes : components/_cards.scss (.card3)
+.cards3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+
+  @include m.respond-to('md') {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,9 @@
+// Variables resolues a la COMPILATION uniquement.
+// Les couleurs restent des custom properties CSS (voir base/_tokens.scss) :
+// elles sont utiles au runtime et elles etaient deja en place.
+
+// Le site d'origine n'a qu'un seul point de rupture : max-width 860px.
+// On le nomme plutot que de le repeter dans chaque partial.
+$breakpoints: (
+  'md': 860px,
+);

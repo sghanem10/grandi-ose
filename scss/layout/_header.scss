@@ -1,0 +1,79 @@
+@use '../abstracts/mixins' as m;
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(253, 251, 250, .85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(124, 90, 166, .12);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  color: var(--violet-deep);
+  font-size: 1.05rem;
+  letter-spacing: .02em;
+
+  img {
+    height: 40px;
+    width: 40px;
+  }
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  font-size: .92rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+
+  a:hover {
+    color: var(--violet);
+  }
+
+  // Override d'origine (ancienne ligne 250), conserve tel quel.
+  // /!\ Consequence : sous 860px la page n'a plus aucune navigation, car il
+  // n'existe aucun element .nav-toggle dans le HTML. Corriger cela reviendrait
+  // a ajouter un menu burger, donc a modifier le rendu -> phase 6 de la ROADMAP.
+  @include m.respond-to('md') {
+    display: none;
+  }
+}
+
+.nav-cta {
+  background: linear-gradient(135deg, var(--violet), var(--mauve));
+  color: #fff;
+  padding: 9px 20px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: .88rem;
+  box-shadow: 0 4px 14px rgba(124, 90, 166, .3);
+  transition: transform .2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+// Regle orpheline de l'original : aucun element .nav-toggle n'existe dans le HTML.
+// Conservee volontairement (on ne nettoie pas pendant un refactor, cela masquerait
+// les vraies regressions). Suppression ou utilisation reelle en phase 6.
+.nav-toggle {
+  display: none;
+}

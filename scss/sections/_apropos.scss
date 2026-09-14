@@ -1,0 +1,97 @@
+@use '../abstracts/mixins' as m;
+
+.apropos {
+  background: #fff;
+  position: relative;
+}
+
+.apropos-grid {
+  display: grid;
+  grid-template-columns: .85fr 1.15fr;
+  gap: 60px;
+  align-items: start;
+
+  @include m.respond-to('md') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.apropos-portrait {
+  background: linear-gradient(160deg, var(--rose-pale), #fff);
+  border-radius: 24px;
+  padding: 40px 32px;
+  border: 1px solid rgba(168, 127, 194, .18);
+  position: sticky;
+  top: 110px;
+
+  img {
+    width: 88px;
+    height: 88px;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    margin-bottom: 6px;
+  }
+
+  .role {
+    color: var(--mauve);
+    font-weight: 700;
+    font-size: .85rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-bottom: 18px;
+    display: block;
+  }
+
+  // /!\ Specificite 0,1,1 : cette regle l'emporte sur .apropos-quote (0,1,0)
+  // pour `color` et `font-size`. C'est deja le comportement de l'original —
+  // la citation s'affiche donc en --ink-soft a .94rem, et non en --violet-deep
+  // a 1.05rem comme le laisse penser la lecture de .apropos-quote. Non corrige :
+  // ce serait une modification visuelle (phase 6).
+  p {
+    color: var(--ink-soft);
+    font-size: .94rem;
+  }
+
+  @include m.respond-to('md') {
+    position: static;
+  }
+}
+
+.apropos-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--violet-deep);
+  font-size: 1.05rem;
+  border-left: 3px solid var(--rose);
+  padding-left: 16px;
+  margin-top: 20px;
+}
+
+.apropos-text {
+  p {
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+    font-size: 1.02rem;
+  }
+
+  h4 {
+    font-family: 'Playfair Display', serif;
+    color: var(--violet-deep);
+    font-size: 1.15rem;
+    margin: 30px 0 12px;
+  }
+
+  .pull {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--violet);
+    margin: 24px 0;
+    padding: 4px 0 4px 20px;
+    border-left: 3px solid var(--mauve);
+  }
+}

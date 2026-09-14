@@ -1,0 +1,21 @@
+@use 'sass:map';
+@use 'variables' as v;
+
+// Les media queries du fichier d'origine etaient regroupees en fin de feuille.
+// Elles sont desormais co-localisees avec la regle qu'elles surchargent : chaque
+// override reste immediatement apres sa regle de base, dans le meme partial, donc
+// dans le meme ordre final qu'avant. La cascade est preservee.
+//
+// Volontairement en max-width, comme l'original. Passer en mobile-first
+// changerait le CSS produit : ce sera une decision de refonte, pas de refactor.
+@mixin respond-to($name) {
+  $max: map.get(v.$breakpoints, $name);
+
+  @if not $max {
+    @error "Point de rupture inconnu : #{$name}. Disponibles : #{map.keys(v.$breakpoints)}.";
+  }
+
+  @media (max-width: $max) {
+    @content;
+  }
+}

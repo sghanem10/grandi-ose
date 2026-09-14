@@ -1,0 +1,43 @@
+form {
+  background: #fff;
+  border-radius: 24px;
+  padding: 38px;
+  box-shadow: 0 14px 40px rgba(91, 58, 122, .1);
+
+  .btn-primary {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+  }
+}
+
+.form-row {
+  margin-bottom: 18px;
+
+  label {
+    display: block;
+    font-size: .86rem;
+    font-weight: 700;
+    color: var(--violet-deep);
+    margin-bottom: 7px;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 13px 16px;
+    border-radius: 12px;
+    border: 1.5px solid rgba(124, 90, 166, .2);
+    font-family: 'Nunito', sans-serif;
+    font-size: .95rem;
+    color: var(--ink);
+    background: var(--cream);
+  }
+
+  input:focus,
+  textarea:focus {
+    outline: 2px solid var(--mauve);
+    border-color: transparent;
+  }
+}

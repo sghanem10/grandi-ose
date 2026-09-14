@@ -1,0 +1,71 @@
+@use '../abstracts/mixins' as m;
+
+// .offre-section ne porte aucune regle propre : elle herite du socle `section`
+// (layout/_section.scss). .offre est l'encart violet interieur.
+.offre {
+  background: linear-gradient(135deg, var(--violet-deep), var(--violet) 50%, var(--mauve));
+  color: #fff;
+  border-radius: 32px;
+  margin: 0 24px;
+  padding: 70px 50px;
+  position: relative;
+  overflow: hidden;
+
+  // Deux cercles decoratifs en debord.
+  &::before {
+    content: '';
+    position: absolute;
+    right: -60px;
+    top: -60px;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, .18);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 20px;
+    bottom: -90px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, .14);
+  }
+
+  // Inversions de couleurs sur fond violet.
+  .section-tag {
+    color: rgba(255, 255, 255, .85);
+  }
+
+  h2 {
+    color: #fff;
+  }
+
+  p {
+    color: rgba(255, 255, 255, .88);
+    font-size: 1.05rem;
+    margin-bottom: 30px;
+  }
+
+  .btn-primary {
+    background: #fff;
+    color: var(--violet-deep);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .18);
+
+    &:hover {
+      box-shadow: 0 12px 28px rgba(0, 0, 0, .22);
+    }
+  }
+
+  @include m.respond-to('md') {
+    padding: 50px 28px;
+  }
+}
+
+.offre-inner {
+  max-width: 600px;
+  position: relative;
+  z-index: 2;
+}

@@ -1,0 +1,6 @@
+// Deja present dans l'original. En !important, donc insensible a l'ordre.
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}

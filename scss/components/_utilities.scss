@@ -1,0 +1,12 @@
+// Classes utilitaires extraites des attributs style="" du HTML d'origine.
+//
+// CHARGE EN DERNIER, volontairement : .u-mb-24 a la meme specificite (0,1,0) que
+// .section-intro, qui declare margin-bottom: 50px. Un style inline gagnait
+// toujours ; une classe ne gagne que si elle est declaree apres. Deplacer ce
+// partial plus haut dans main.scss casserait le rendu.
+
+// Remplace style="margin-bottom:24px" sur le .section-intro de la section metier
+// (ancienne ligne 345).
+.u-mb-24 {
+  margin-bottom: 24px;
+}

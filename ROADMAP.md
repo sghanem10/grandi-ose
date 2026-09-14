@@ -11,7 +11,7 @@
 2. [État des lieux](#2--état-des-lieux-du-fichier-existant)
 3. [Outillage retenu](#3--outillage-retenu)
 4. [Arborescence cible](#4--arborescence-cible)
-5. [**Phase 1 — Découpage HTML / SCSS / JS**](#phase-1--découpage-html--scss--js) ⬅️ *à faire maintenant*
+5. [**Phase 1 — Découpage HTML / SCSS / JS**](#phase-1--découpage-html--scss--js) ✅ *terminée le 14/09/2026*
 6. [Phase 2 — SEO technique](#phase-2--seo-technique-iso-visuel)
 7. [Phase 3 — Éclatement multi-pages](#phase-3--éclatement-multi-pages)
 8. [Phase 4 — Formulaire → email](#phase-4--formulaire--email)
@@ -78,7 +78,7 @@ Il est affiché à 4 tailles différentes : 40×40 (nav), 380px (hero), 88×88 (
 | **JavaScript** | **Inexistant** (0 balise `<script>`, 0 attribut `onclick`) | → à créer (Phase 1 pour l'outillage, Phase 6 pour les comportements) |
 | Formulaire (l. 437-451) | `<form>` sans `action`, sans `method`, sans consentement RGPD. **Ne fait rien.** | → Phase 4 |
 | `<head>` | `title` + `description` seulement | → Phase 2 |
-| `alt` des images | Aucun | → Phase 2 (invisible) |
+| `alt` des images | Présents mais faibles : « Logo Grandi-Ose ! » ×2, « Grandi-Ose ! Kinésiologie », « Grandi-Ose ! » | → Phase 2 (invisible) |
 | Polices | Google Fonts en CDN, 9 graisses déclarées pour ~4 utilisées | → auto-hébergement (Phase 1) |
 | Sections | 7, `id` déjà posés (`#apropos` `#metier` `#pourqui` `#deroulement` `#offre` `#contact`) | conservées |
 | Mentions légales / confidentialité | Absentes | → Phase 3 (**obligation légale**) |
@@ -91,6 +91,7 @@ Il est affiché à 4 tailles différentes : 40×40 (nav), 380px (hero), 88×88 (
 | 57 | `.nav-toggle{display:none}` : règle CSS orpheline | Idem |
 | 180 | `.card3 .icon{...}` : CSS mort, aucun élément `.icon` dans le HTML | Conservé tel quel en Phase 1, supprimable en Phase 6 |
 | 304 / 314 | Le logo sert de **placeholder** pour l'illustration hero et pour le portrait de Géraldine | Remplacer = modification visuelle (R1). **À prévoir : vraie photo + vraie illustration.** |
+| 456 | Le logo du footer porte `style="height:36px;width:36px"`, qui écrase le `40px` de `.nav-logo img` : il s'affiche donc à **36 px**, ce que seule la lecture de l'attribut inline révélait | Reproduit à l'identique en phase 1 via `footer .nav-logo img` |
 | 426-434 | `<h4>` employé directement après le `<h2>` de section (saut de niveau) | Corrigé en Phase 2 (invisible : restylé à l'identique) |
 | 345 | `style="margin-bottom:24px"` inline | Déplacé en classe utilitaire, rendu identique (Phase 1) |
 | 458 | `© 2026` codé en dur | Corrigé en JS en Phase 6 |
@@ -293,16 +294,26 @@ Il n'y a aujourd'hui **aucun JavaScript**. On crée uniquement la structure :
 | `reveal.js` | 6 | Apparition des sections au scroll |
 | `year.js` | 6 | Année du footer automatique |
 
-### ✅ Critères de validation de la Phase 1
+### ✅ Critères de validation de la Phase 1 — résultats
 
-- [ ] Diff CSS normalisé original ↔ généré : **vide**
-- [ ] Captures identiques à 1440 / 860 / 390 px
-- [ ] Poids total de la page < 120 Ko (vs 815 Ko)
-- [ ] Lighthouse Performance ≥ 95 sur mobile
-- [ ] Accents et caractères spéciaux intacts (UTF-8 préservé : `é`, `·e`, `œ`, `À`)
-- [ ] Toutes les ancres internes fonctionnelles
-- [ ] Le `<details>` « Lire la suite » fonctionne toujours
-- [ ] **Zéro modification de texte** (diff du contenu textuel : vide)
+Vérification automatisée : `npm run check` et `node tools/shoot.mjs`.
+
+| Critère | Résultat |
+|---|---|
+| Texte identique caractère pour caractère | ✅ 5 022 caractères, aucun écart |
+| Structure DOM identique | ✅ 155 éléments, + le `<script>` d'amorce |
+| Déclarations CSS identiques | ✅ 407 = 407, ensembles égaux |
+| **Cascade identique** (déclaration gagnante par élément × propriété) | ✅ 1 116 couples en desktop, 1 119 en mobile, **0 divergence** |
+| Comparaison pixel à pixel (3 largeurs × 3 positions) | ✅ 0 % d'écart sur 6 captures ; 0,34 à 1,33 % sur les 3 captures du hero, imputables à la palettisation du logo (arbitrage documenté au journal) |
+| Poids de la page | ✅ 795,7 Ko → **194,5 Ko** tout compris, dont 115,8 Ko de polices déjà téléchargées auparavant |
+| HTML seul | ✅ 795,7 Ko → **11,1 Ko** (−98,6 %) |
+| Accents et caractères spéciaux (`é`, `·e`, `œ`, `À`) | ✅ UTF-8 préservé, contrôlé par le diff de texte |
+| Ancres internes | ✅ vérifiées par les captures `#metier` et `#contact` |
+| `<details>` « Lire la suite » | ✅ fonctionne, toujours sans JavaScript |
+| Zéro modification de texte | ✅ |
+
+Restent à mesurer une fois le site en ligne : Lighthouse et les Core Web Vitals,
+qui nécessitent un serveur réel (phase 5).
 
 ---
 
@@ -325,7 +336,7 @@ Il n'y a aujourd'hui **aucun JavaScript**. On crée uniquement la structure :
 ### 2.2 Sémantique et accessibilité
 
 - `<main>`, `<nav aria-label="Navigation principale">`, `<address>` dans le footer.
-- **`alt` descriptifs sur les 4 images** (aucun aujourd'hui). SVG décoratifs → `aria-hidden="true"` + `focusable="false"`.
+- **`alt` à reprendre sur les 4 images.** Ils existent mais sont peu descriptifs et redondants (« Grandi-Ose ! » seul), et deux d'entre eux décrivent un logo servant de placeholder. À réécrire une fois les vraies images en place (phase 6). SVG décoratifs → `aria-hidden="true"` + `focusable="false"`.
 - Correction du saut de niveau `h2` → `h4` (l. 426-434) : passage en `h3` **restylé pour un rendu identique**.
 - `scroll-margin-top` sur les cibles d'ancre : le header fixe (l. 39-44) masque actuellement le haut des titres au clic. Correction invisible hors interaction.
 - Skip-link (visible uniquement au focus clavier), `:focus-visible` net, contrastes vérifiés AA.
@@ -718,3 +729,9 @@ Les trois tâches « en parallèle » de l'étape 1 sont celles dont le délai n
 | 14/09/2026 | **Aucun stockage des messages** | Transmission par email uniquement. Moins de données conservées = moins de risque et moins d'obligations RGPD. |
 | 14/09/2026 | **Polices auto-hébergées** | Performance (2 connexions tierces bloquantes supprimées) + RGPD (plus de transfert d'IP hors UE). |
 | 14/09/2026 | **`grandi-ose-2.html` conservé définitivement** | Référence de non-régression pour toute la durée du projet. |
+| 14/09/2026 | **PNG palettisé, pas de WebP ni d'AVIF, pas de `<picture>`** | Mesuré, contre le plan initial : sur du trait fin monochrome sur fond transparent, le PNG 256 couleurs est **plus léger** que WebP q90 et AVIF q80 à toutes les tailles (80 px : 2,8 Ko contre 3,1 et 2,5 ; 600 px : 39,8 Ko contre 104 et 126). Un simple `<img>` suffit : HTML plus simple, cohérent avec R4. |
+| 14/09/2026 | **Fidélité du logo hero : mode « léger »** | Palette 256 couleurs, 39,8 Ko : 4 376 pixels d'écart sur 1 296 000 (0,34 %), sur l'anticrénelage. Le 24 bits coûte +95 Ko, soit la moitié du poids de la page, pour 0,04 %. R3 autorise d'alléger, et ce logo est un placeholder. Réversible via `HERO_FIDELITY` dans `tools/build-images.mjs`. |
+| 14/09/2026 | **`height: auto` ajouté sur `.hero-visual img`** | Rendu nécessaire par l'ajout des attributs `width`/`height` : ces indications de présentation fixaient la hauteur à 600 px alors que le CSS n'écrasait que la largeur, ce qui étirait le logo. Détecté par la comparaison visuelle, pas par l'analyse statique — le vérificateur a été corrigé pour couvrir ce cas. |
+| 14/09/2026 | **CSS compilé (`public/css/main.css`) versionné** | Permet de déployer sans étape de build côté hébergeur. Contrepartie : cache busting manuel via `?v=`, documenté dans le README. |
+| 14/09/2026 | **`latin-ext` livré mais jamais téléchargé** | Vérifié : tous les caractères du texte tiennent dans le sous-ensemble `latin` (le `œ` de « sœur » est en U+0153, inclus dans `U+0152-0153`). Les fichiers `latin-ext` restent en filet de sécurité pour de futures modifications de texte, sans coût aujourd'hui grâce à `unicode-range`. |
+| 14/09/2026 | **Gain sur les polices : latence et RGPD, pas volume** | Correction d'une estimation trop optimiste du plan initial : les graisses déclarées mais inutilisées n'étaient de toute façon jamais téléchargées (Google Fonts les découpe déjà par `unicode-range`). Le bénéfice réel est la suppression de deux connexions tierces bloquantes et du transfert d'IP hors UE. |

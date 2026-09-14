@@ -1,0 +1,36 @@
+footer {
+  background: var(--violet-deep);
+  color: rgba(255, 255, 255, .85);
+  padding: 50px 0 30px;
+  text-align: center;
+
+  .nav-logo {
+    justify-content: center;
+    color: #fff;
+    margin-bottom: 14px;
+
+    // Extrait de style="height:36px;width:36px" porte par le <img> du footer
+    // dans l'original. Le logo du pied de page est donc a 36px, et non aux 40px
+    // de .nav-logo img : ce n'etait visible que dans l'attribut inline.
+    // Selecteur volontairement en 0,2,1 : une simple classe utilitaire (0,1,0)
+    // perdrait contre .nav-logo img (0,1,1).
+    img {
+      height: 36px;
+      width: 36px;
+    }
+  }
+
+  // Ordre significatif : .tag doit rester APRES `footer p`, les deux ayant la
+  // meme specificite et declarant `color`. C'est l'ordre de l'original.
+  p {
+    font-size: .88rem;
+    color: rgba(255, 255, 255, .65);
+  }
+
+  .tag {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: rgba(255, 255, 255, .85);
+    margin-bottom: 20px;
+  }
+}

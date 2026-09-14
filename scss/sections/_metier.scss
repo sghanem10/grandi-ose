@@ -1,0 +1,41 @@
+@use '../abstracts/mixins' as m;
+
+.metier {
+  background: #fff;
+}
+
+.metier-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+
+  @include m.respond-to('md') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.metier-list {
+  list-style: none;
+  margin-top: 24px;
+
+  li {
+    padding-left: 30px;
+    position: relative;
+    margin-bottom: 16px;
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+
+    // Puce ronde dessinee en CSS.
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--mauve);
+      border-radius: 50%;
+    }
+  }
+}

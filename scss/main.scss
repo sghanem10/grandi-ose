@@ -1,0 +1,50 @@
+// =============================================================================
+//  Grandi-Ose ! — feuille de style principale
+//  Ce fichier ne contient QUE des @use. Aucune regle CSS n'y est ecrite : on sait
+//  ainsi toujours dans quel partial chercher un style.
+//
+//  L'ORDRE COMPTE. Il a ete verifie contre le CSS d'origine : tous les overrides
+//  d'egale specificite restent co-localises avec leur regle de base dans un meme
+//  partial, et .u-* passe en dernier. Voir le commentaire de chaque partial
+//  concerne avant de reordonner.
+//
+//  Compilation :  npm run dev   (watch)
+//                 npm run build (minifie)
+// =============================================================================
+
+// --- Outils : aucune sortie CSS ----------------------------------------------
+@use 'abstracts/variables';
+@use 'abstracts/mixins';
+
+// --- Socle -------------------------------------------------------------------
+@use 'base/fonts';       // @font-face auto-hebergees (genere par npm run fonts)
+@use 'base/tokens';      // :root, palette de la marque
+@use 'base/reset';
+@use 'base/typography';
+
+// --- Structure ---------------------------------------------------------------
+@use 'layout/container';
+@use 'layout/section';   // socle `section` + .section-tag/-title/-intro
+@use 'layout/header';
+@use 'layout/footer';
+
+// --- Composants reutilisables ------------------------------------------------
+@use 'components/buttons';
+@use 'components/cards';
+@use 'components/form';
+@use 'components/botanical';
+@use 'components/read-more';
+
+// --- Sections de la page, dans l'ordre d'affichage ---------------------------
+@use 'sections/hero';
+@use 'sections/tagline';
+@use 'sections/apropos';
+@use 'sections/metier';
+@use 'sections/pourqui';
+@use 'sections/deroulement';
+@use 'sections/offre';
+@use 'sections/contact';
+
+// --- Fin de feuille ----------------------------------------------------------
+@use 'base/motion';        // prefers-reduced-motion (!important, ordre indifferent)
+@use 'components/utilities'; // DOIT rester en dernier (cf. _utilities.scss)

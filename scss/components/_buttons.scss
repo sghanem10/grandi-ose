@@ -1,0 +1,36 @@
+// Boutons generiques. Les variantes contextuelles restent dans leur partial :
+//   .nav-cta          -> layout/_header.scss
+//   form .btn-primary -> components/_form.scss
+//   .offre .btn-primary -> sections/_offre.scss
+// Toutes ont une specificite superieure, l'ordre de chargement est donc sans effet.
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--violet), var(--mauve));
+  color: #fff;
+  padding: 15px 32px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: .98rem;
+  box-shadow: 0 8px 24px rgba(124, 90, 166, .35);
+  display: inline-block;
+  transition: transform .25s ease, box-shadow .25s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(124, 90, 166, .42);
+  }
+}
+
+.btn-secondary {
+  padding: 15px 30px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: .98rem;
+  border: 2px solid var(--violet);
+  color: var(--violet-deep);
+  transition: background .25s ease;
+
+  &:hover {
+    background: rgba(124, 90, 166, .08);
+  }
+}

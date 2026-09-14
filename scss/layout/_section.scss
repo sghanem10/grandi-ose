@@ -1,0 +1,27 @@
+// Socle commun a toutes les sections.
+section {
+  padding: 90px 0;
+  position: relative;
+}
+
+.section-tag {
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--mauve);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  margin-bottom: 18px;
+}
+
+.section-intro {
+  color: var(--ink-soft);
+  max-width: 560px;
+  font-size: 1.05rem;
+  margin-bottom: 50px;
+}

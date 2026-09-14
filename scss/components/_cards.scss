@@ -1,0 +1,49 @@
+// Cartes « Pour qui ? »
+.card3 {
+  background: #fff;
+  border-radius: 22px;
+  padding: 34px 28px;
+  box-shadow: 0 10px 30px rgba(91, 58, 122, .07);
+  border: 1px solid rgba(168, 127, 194, .12);
+  transition: transform .25s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+  }
+
+  // Regle orpheline de l'original : aucun element .icon dans le HTML.
+  // Conservee (cf. commentaire de layout/_header.scss sur .nav-toggle).
+  .icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 18px;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: var(--ink-soft);
+    font-size: .94rem;
+  }
+}
+
+// Encart « Comment ca se passe ? » de la section metier.
+.metier-card {
+  background: linear-gradient(160deg, var(--rose-pale), #fff);
+  border-radius: 24px;
+  padding: 36px;
+  border: 1px solid rgba(168, 127, 194, .18);
+
+  h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: var(--ink-soft);
+    font-size: .96rem;
+  }
+}

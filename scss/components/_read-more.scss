@@ -1,0 +1,35 @@
+// Depliant « Lire la suite de mon histoire » (<details> native, sans JavaScript).
+details.read-more {
+  margin-top: 8px;
+
+  summary {
+    cursor: pointer;
+    color: var(--violet);
+    font-weight: 700;
+    font-size: .92rem;
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::after {
+      // Fleche « → ». Ecrite en echappement CSS plutot qu'en caractere litteral :
+      // rendu identique, mais insensible a l'encodage du fichier et a l'en-tete
+      // charset renvoye par le serveur.
+      content: '\2192';
+      transition: transform .2s ease;
+    }
+  }
+
+  &[open] summary::after {
+    transform: rotate(90deg);
+  }
+
+  .more-content {
+    margin-top: 18px;
+  }
+}

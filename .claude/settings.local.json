@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-Content *)",
+      "PowerShell($f='C:\\\\Users\\\\selim\\\\Documents\\\\Grandi-ose\\\\grandi-ose-2.html'; $lines=Get-Content $f -Encoding UTF8; $start=\\($lines | Select-String -Pattern '</style>' | Select-Object -First 1\\).LineNumber; \"</style> at line $start\"; $lines | Select-Object -Skip \\($start-1\\) | ForEach-Object -Begin {$i=$start-1} -Process {$i++; $l=$_.Trim\\(\\); if\\($l.Length -gt 150\\){$l=$l.Substring\\(0,150\\)+\" …[len=$\\($_.Length\\)]\"}; if\\($l -ne ''\\){\"{0,4}: {1}\" -f $i,$l}})",
+      "PowerShell($f='C:\\\\Users\\\\selim\\\\Documents\\\\Grandi-ose\\\\grandi-ose-2.html'; $c=[IO.File]::ReadAllText\\($f\\); $m=[regex]::Matches\\($c,'data:image/png;base64,\\([A-Za-z0-9+/=]+\\)'\\); foreach\\($x in $m\\){ $b=$x.Groups[1].Value; $bytes=[Convert]::FromBase64String\\($b\\); $md5=[BitConverter]::ToString\\(\\([Security.Cryptography.MD5]::Create\\(\\)\\).ComputeHash\\($bytes\\)\\).Replace\\('-',''\\); $w=[BitConverter]::ToUInt32\\(\\($bytes[19..16]\\),0\\); $h=[BitConverter]::ToUInt32\\(\\($bytes[23..20]\\),0\\); \"b64len=$\\($b.Length\\) bytes=$\\($bytes.Length\\) dims=${w}x${h} md5=$md5\" })",
+      "PowerShell(node tools/probe-images.mjs)",
+      "PowerShell(node tools/probe-quality.mjs)",
+      "PowerShell(node tools/build-images.mjs)",
+      "PowerShell(node tools/build-fonts.mjs)",
+      "PowerShell($l=Get-Content 'grandi-ose-2.html' -Encoding UTF8; foreach\\($n in 46,345\\){ \"--- ligne $n ---\"; $l[$n-1] })",
+      "PowerShell(node tools/check-css.mjs)",
+      "PowerShell(Get-Content public/css/main.css -Encoding UTF8 -TotalCount 8; \"...\"; Select-String -Path public/css/main.css -Pattern ':root' -Context 0,3 | Select-Object -First 1 | ForEach-Object { $_.Line; $_.Context.PostContext })",
+      "PowerShell(node tools/_inspect.mjs)",
+      "PowerShell(node tools/build-html.mjs)",
+      "PowerShell(npm install *)",
+      "PowerShell(npm run *)",
+      "PowerShell(node tools/shoot.mjs)"
+    ]
+  }
+}

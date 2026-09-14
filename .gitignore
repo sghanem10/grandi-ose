@@ -1,0 +1,14 @@
+node_modules/
+.env
+.env.*
+.DS_Store
+Thumbs.db
+*.log
+.sass-cache/
+.wrangler/
+.captures/
+
+# Fichiers générés par le build (décommenter si on préfère ne pas les versionner ;
+# on les garde versionnés pour l'instant : déploiement possible sans étape de build)
+# public/css/main.css
+# public/css/main.css.map

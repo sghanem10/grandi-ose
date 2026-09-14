@@ -1,0 +1,9 @@
+// Bandeau de citation intercale entre le hero et la section « Mon histoire ».
+.tagline-strip {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--violet-deep);
+  padding: 50px 24px;
+}
