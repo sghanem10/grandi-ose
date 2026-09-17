@@ -15,5 +15,7 @@
  *                               navigation sous 860px
  */
 import { initCarousels } from './modules/carousel.js';
+import { initSendMail } from './modules/send-mail.js';
 
 initCarousels();
+initSendMail();
