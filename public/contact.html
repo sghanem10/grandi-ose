@@ -87,7 +87,7 @@
          de la ROADMAP (Cloudflare Pages Functions + API Brevo, avec honeypot,
          Turnstile et case de consentement RGPD). En l'etat il ne fait rien. -->
     <form>
-      <div class="form-row">
+      <div class="form-row" id="contact-form">
         <label for="nom">Nom</label>
         <input type="text" id="nom" name="nom" placeholder="Votre nom">
       </div>
@@ -99,6 +99,14 @@
         <label for="message">Message</label>
         <textarea id="message" name="message" rows="4" placeholder="Parlez-moi de ce qui vous amène..."></textarea>
       </div>
+
+      <!-- Le Honeypot : invisible pour l'humain, visible pour le robot -->
+      <div style="display:none;" aria-hidden="true">
+        <label for="website">Ne remplissez pas ce champ si vous êtes humain</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <p id="form-status" style="margin-top: 10px;"></p>
       <button type="submit" class="btn-primary">Envoyer le message</button>
     </form>
   </div>
