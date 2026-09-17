@@ -18,7 +18,7 @@ export function initSendMail() {
     
       try {
         // 3. Envoyer les données en POST vers la fonction Cloudflare (/contact)
-        const response = await fetch('/contact', {
+        const response = await fetch('/send-message', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
