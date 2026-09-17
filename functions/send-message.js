@@ -31,13 +31,13 @@ export async function onRequestPost(context) {
       },
       body: JSON.stringify({
         sender: {
-          name: "Site Grani-Ose",
-          email: "votre-email-verifie-sur-brevo@domaine.com" // ⚠️ Doit être un email validé sur Brevo
+          name: "Site Grandi-Ose",
+          email: "selim.ghanem95@gmail.com" // ⚠️ Doit être un email validé sur Brevo
         },
         to: [
           {
-            email: "votre-boite-mail-personnelle@gmail.com", // ⚠️ Votre email perso
-            name: "Grani-Ose"
+            email: "selim.ghanem95@gmail.com", // ⚠️ Votre email perso
+            name: "Grandi-Ose"
           }
         ],
         subject: `Nouveau message de contact de ${name}`,
