@@ -1,16 +1,17 @@
 export function initSendMail() {
     const form = document.getElementById('contact-form');
-    
+    if (!form) return;
+
     form.addEventListener('submit', async function(e) {
       // 1. Empêcher le rechargement classique de la page
       e.preventDefault();
-    
+        
       const statusEl = document.getElementById('form-status');
       statusEl.textContent = "Envoi en cours...";
     
       // 2. Récupérer les valeurs des champs du formulaire
       const formData = {
-        name: document.getElementById('name').value,
+        name: document.getElementById('nom').value,
         email: document.getElementById('email').value,
         message: document.getElementById('message').value,
         website: document.getElementById('website').value // Le piège à spam (doit être vide)
