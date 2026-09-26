@@ -100,7 +100,7 @@
   --violet: #7c5aa6;
   --mauve: #a87fc2;
   --rose: #e8b4d4;
-  --rose-pale: #f7e9f2;
+  --rose-pale: #f2ebe0;
   --cream: #fdfbfa;
   --ink: #3a2c4a;
   --ink-soft: #6b5b7f;
@@ -265,6 +265,34 @@ footer .tag {
   margin-bottom: 20px;
 }
 
+
+.footer-contact {
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  font-style: normal; /* Annule l'italique par défaut de la balise address */
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: opacity 0.2s ease;
+}
+
+.contact-link:hover {
+  opacity: 0.7;
+}
+
+.footer-icon {
+  flex-shrink: 0;
+}
+
 .btn-primary {
   background: linear-gradient(135deg, var(--violet), var(--mauve));
   color: #fff;
@@ -410,15 +438,16 @@ details.read-more .more-content {
   background: linear-gradient(160deg, var(--rose-pale) 0%, var(--cream) 45%, var(--cream) 100%);
   overflow: hidden;
 }
-.hero h1 {
+.hero h2 {
   font-size: clamp(2.4rem, 4.5vw, 3.6rem);
   line-height: 1.12;
   margin-bottom: 22px;
 }
-.hero h1 em {
+.hero h2 em {
   font-style: italic;
   color: var(--mauve);
 }
+
 .hero p.lead {
   font-size: 1.15rem;
   color: var(--ink-soft);
@@ -450,13 +479,16 @@ details.read-more .more-content {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  font-family: inherit; /* Annule le "Playfair Display" ajouté par le ciblage du h1 */
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--violet);
+  margin-top: 0; /* Annule la marge haute par défaut du navigateur pour les h1 */
   margin-bottom: 18px;
 }
+
 .eyebrow::before {
   content: "";
   width: 7px;
@@ -576,7 +608,7 @@ details.read-more .more-content {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;;
+  gap: 20px;
 }
 
 .apropos-text p {
@@ -612,7 +644,7 @@ details.read-more .more-content {
   font-size: 1.15rem;
   margin: 30px 0 12px;
 }
-.apropos-text .pull {
+.apropos-text .quote {
   font-family: "Playfair Display", serif;
   font-style: italic;
   font-size: 1.2rem;
@@ -620,6 +652,10 @@ details.read-more .more-content {
   margin: 24px 0;
   padding: 4px 0 4px 20px;
   border-left: 3px solid var(--mauve);
+}
+.apropos-text .quote .quote-author{
+  font-size: 0.9rem;
+  font-style: normal;
 }
 
 .metier {
