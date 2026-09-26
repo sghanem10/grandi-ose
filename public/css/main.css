@@ -554,7 +554,7 @@ details.read-more .more-content {
 .apropos-portrait {
   background: linear-gradient(160deg, var(--rose-pale), #fff);
   border-radius: 24px;
-  padding: 40px 32px;
+  padding: 40px 16px;
   border: 1px solid rgba(168, 127, 194, 0.18);
   position: sticky;
   top: 110px;
@@ -609,6 +609,10 @@ details.read-more .more-content {
   justify-content: space-between;
   align-items: center;
   gap: 20px;
+}
+
+.apropos-author .img-container img {
+  object-position: 50% 25%;
 }
 
 .apropos-text p {
