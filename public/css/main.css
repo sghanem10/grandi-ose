@@ -569,6 +569,19 @@ details.read-more .more-content {
   font-size: 1.25rem;
   margin-bottom: 6px;
 }
+.apropos-portrait .h3-style{
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  color: var(--violet-deep);
+  font-size: 1.25rem;
+  margin-bottom: 6px;
+}
 .apropos-portrait .role {
   color: var(--mauve);
   font-weight: 700;
@@ -620,7 +633,7 @@ details.read-more .more-content {
   margin-bottom: 18px;
   font-size: 1.02rem;
 }
-.apropos-text h4 {
+.apropos-text h3 {
   font-family: "Playfair Display", serif;
   color: var(--violet-deep);
   font-size: 1.15rem;
