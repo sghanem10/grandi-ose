@@ -28,9 +28,6 @@
   align-items: flex-start;
   margin-bottom: 22px;
 
-  // Pastille ronde. Elle contenait un emoji systeme (📍 🗓️ ✉️), dont le rendu
-  // varie d'un appareil a l'autre et jurait avec le trait fin du reste du site.
-  // Remplace par un pictogramme SVG (components/_icons.scss).
   .dot {
     width: 38px;
     height: 38px;
@@ -41,22 +38,13 @@
     justify-content: center;
     flex-shrink: 0;
     color: var(--violet);
+    font-size: 1.1rem;
   }
 
-  .ico {
-    width: 19px;
-    height: 19px;
-  }
-
-  // h3 depuis le passage en multi-pages : sur la page Contact, le h2 est pris
-  // par « En pratique », et sauter de h2 a h4 casserait la hierarchie.
-  h3,
   h4 {
     font-size: .98rem;
     color: var(--violet-deep);
     margin-bottom: 3px;
-    font-family: 'Nunito', sans-serif;
-    font-weight: 700;
   }
 
   span {

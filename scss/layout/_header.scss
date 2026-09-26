@@ -38,25 +38,13 @@ header {
 
 .nav-links {
   display: flex;
-  // 22px au lieu de 28 : la navigation est passee de 5 a 6 entrees avec
-  // l'ajout des temoignages et le dedoublement « Pourquoi ? » / « Pour qui ? ».
-  gap: 22px;
+  gap: 28px;
   font-size: .92rem;
   font-weight: 600;
   color: var(--ink-soft);
 
   a:hover {
     color: var(--violet);
-  }
-
-  // Page courante. Le site etant multi-pages, le visiteur doit savoir ou il
-  // est. aria-current="page" porte l'information pour les lecteurs d'ecran ;
-  // le soulignement la rend visible pour les autres.
-  a[aria-current='page'] {
-    color: var(--violet-deep);
-    font-weight: 700;
-    border-bottom: 2px solid var(--mauve);
-    padding-bottom: 2px;
   }
 
   // Override d'origine (ancienne ligne 250), conserve tel quel.

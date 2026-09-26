@@ -30,12 +30,9 @@ npx serve public
 | `npm run dev` | Compile `scss/` en continu, avec source map. **À lancer pendant qu'on travaille.** |
 | `npm run css` | Compile une fois, en CSS lisible. |
 | `npm run build` | Compile une fois, minifié. **À lancer avant de publier.** |
-| `npm run links` | **Vérifie le maillage du site.** Liens morts, ancres cassées, hiérarchie des titres, en-tête et pied de page désynchronisés, pages orphelines, informations restant à fournir. À lancer après toute modification du HTML. |
-| `npm run preview` | Une capture d'écran par section, en desktop et en mobile. Nécessite Google Chrome. |
-| `npm run page` | La page entière en une seule image. Accepte `-- 1440 6000 faq.html`. Nécessite Google Chrome. |
+| `npm run check` | Vérifie qu'on n'a rien cassé par rapport à l'original (voir plus bas). |
 | `npm run img` | Régénère `public/img/` depuis `img-src/`. Utile seulement si on change une image source. |
 | `npm run fonts` | Régénère `public/fonts/` et `scss/base/_fonts.scss`. Utile seulement si on change de police. |
-| `npm run check` | Compare à l'original. **Signale désormais de gros écarts, et c'est normal** (voir plus bas). |
 
 ## Organisation
 
@@ -50,37 +47,15 @@ scss/            sources des styles  -> ne jamais éditer public/css/main.css
   sections/        une par section de la page
 
 public/          C'EST CE QUI EST PUBLIÉ. Racine du site.
-  index.html                 accueil
-  kinesiologie-thuir.html    la méthode, les motifs, les profils
-  qui-suis-je.html           l'histoire de Géraldine
-  seance-decouverte.html     l'offre
-  faq.html                   questions fréquentes
-  contact.html               formulaire et infos pratiques
-  mentions-legales.html      obligatoire (LCEN)
-  confidentialite.html       obligatoire (RGPD)
+  index.html       le fichier qu'on édite pour changer le contenu
   css/main.css     GÉNÉRÉ — toute modification directe sera écrasée
-  js/             main.js + modules/carousel.js
+  js/main.js       vide pour l'instant
   fonts/ img/      générés
 
 img-src/         images sources en haute définition, non publiées
 tools/           scripts de build et de vérification
 grandi-ose-2.html   ORIGINAL. Ne pas supprimer : sert de référence.
 ```
-
-### Modifier l'en-tête ou le pied de page
-
-Il n'y a pas de générateur de site : les blocs `<header>` et `<footer>` sont
-**recopiés à l'identique dans les 8 fichiers**. Pour changer une entrée de
-menu, il faut donc les modifier toutes les 8 — un rechercher-remplacer sur le
-dossier `public/` suffit.
-
-Deux différences sont légitimes d'un fichier à l'autre, et elles seules :
-l'attribut `aria-current="page"` sur la page courante, et la cible du bouton
-« Je prends RDV » sur la page Contact. `npm run links` vérifie qu'il n'y en a
-pas d'autres.
-
-Si cette duplication devient pénible, c'est le signal qu'il faut passer à un
-générateur de site statique (Eleventy, gratuit). Pas avant.
 
 ### Où trouver un style ?
 
@@ -100,37 +75,23 @@ visiteurs reçoivent bien la nouvelle version.
 <link rel="stylesheet" href="css/main.css?v=2">
 ```
 
-## Relire visuellement
+## Vérifier qu'on n'a rien cassé
 
 ```bash
-npm run preview        # une capture par section, en desktop et en mobile
-npm run page           # la page entière en une image
+npm run check      # comparaison analytique avec l'original
+node tools/shoot.mjs   # comparaison visuelle, nécessite Google Chrome
 ```
 
-Les images atterrissent dans `.captures/` (non versionné).
+`npm run check` compare `public/` à `grandi-ose-2.html` sur quatre plans : le
+texte, la structure du DOM, l'ensemble des déclarations CSS, et surtout la
+**cascade** — pour chaque élément et chaque propriété, la déclaration gagnante
+doit avoir la même valeur. Il sort en erreur au moindre écart.
 
-> Deux pièges de Chrome en mode headless, déjà contournés dans les outils :
-> il **ignore le défilement** pour les captures — d'où la capture pleine page
-> plutôt qu'un parcours par ancres — et il **impose une largeur de fenêtre
-> minimale d'environ 500 px**, en dessous de laquelle l'image est rognée à
-> droite et simule un débordement inexistant.
+`tools/shoot.mjs` capture les deux versions dans Chrome à trois largeurs et
+trois positions de page, puis les compare pixel à pixel.
 
-## Les outils de non-régression de la phase 1
-
-```bash
-npm run check          # comparaison analytique avec l'original
-node tools/shoot.mjs   # comparaison visuelle avec l'original
-```
-
-Ils comparent `public/` à `grandi-ose-2.html`. `npm run check` porte sur quatre
-plans : le texte, la structure du DOM, l'ensemble des déclarations CSS, et
-surtout la **cascade** — pour chaque élément et chaque propriété, la déclaration
-gagnante doit avoir la même valeur.
-
-⚠️ **Depuis la phase 6, le site diverge volontairement de l'original.** Ces deux
-outils signalent donc de gros écarts, ce qui est attendu. Ils restent dans le
-dépôt comme trace de la validation du découpage initial ; ils ne sont plus un
-test à faire passer.
+Ces deux outils gardent leur intérêt tant que l'original reste la référence,
+c'est-à-dire jusqu'aux modifications volontaires de la phase 6.
 
 ## Points d'attention
 
@@ -139,10 +100,4 @@ test à faire passer.
 - **Ne pas éditer** `public/css/main.css`, `scss/base/_fonts.scss`,
   `public/fonts/` ni `public/img/` : ils sont régénérés.
 - **Pas de navigation sous 860 px** aujourd'hui : le menu disparaît et rien ne
-  le remplace. Défaut hérité de l'original, toujours à corriger — c'est la
-  priorité n°1 de ce qui reste.
-- **Les témoignages sont des textes de réserve.** Ne pas publier de faux avis :
-  c'est une pratique commerciale trompeuse. Voir le commentaire dans
-  `public/index.html`, au-dessus du carrousel.
-- **Le portrait de la carte « Géraldine » est un SVG de réserve.** Mode
-  d'emploi pour le remplacer dans `public/img/portrait-placeholder.svg`.
+  le remplace. C'est un défaut connu de l'original, corrigé en phase 6.

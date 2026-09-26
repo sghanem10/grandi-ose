@@ -1,0 +1,16 @@
+// Ornements vegetaux decoratifs en SVG inline.
+.botanical {
+  position: absolute;
+  pointer-events: none;
+  opacity: .5;
+  z-index: 0;
+}
+
+// Extrait de l'attribut style="right:-80px;top:60px;width:380px;" porte par le
+// SVG du hero dans l'original (ancienne ligne 283). Valeurs inchangees.
+// Aucune propriete commune avec .botanical : l'ordre est sans effet.
+.botanical--hero {
+  right: -80px;
+  top: 60px;
+  width: 380px;
+}
