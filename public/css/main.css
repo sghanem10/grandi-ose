@@ -576,7 +576,7 @@ details.read-more .more-content {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  gap: 20px;;
 }
 
 .apropos-text p {
