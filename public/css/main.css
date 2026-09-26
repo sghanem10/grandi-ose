@@ -862,3 +862,17 @@ details.read-more .more-content {
     margin-bottom: 38px;
   }
 }
+
+/* --- ANIMATIONS AU SCROLL --- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
